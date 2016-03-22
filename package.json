@@ -1,0 +1,38 @@
+{
+  "name": "medium-framework",
+  "version": "0.1.0",
+  "description": "just another lightweight javascript framework",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "framework:build": "cd src; node build.js rel=../",
+    "build": "npm run framework:build -s -- minify",
+    "build:expanded": "npm run framework:build -s"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://theprojectsomething@github.com/theprojectsomething/medium-framework.git"
+  },
+  "keywords": [
+    "client side",
+    "front end",
+    "router",
+    "view",
+    "way",
+    "bind",
+    "listen",
+    "scope"
+  ],
+  "author": "Som Meaden <som@theprojectsomething.com> (http://theprojectsomething.com/)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/theprojectsomething/medium-framework/issues"
+  },
+  "homepage": "https://github.com/theprojectsomething/medium-framework#readme",
+  "dependencies": {},
+  "devDependencies": {
+    "amdclean": "2.7.0",
+    "requirejs": "2.2.0",
+    "uglify-js": "2.6.2"
+  }
+}
