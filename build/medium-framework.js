@@ -1264,4 +1264,4 @@ window.main = main;
   return window[ 'main' ];
 
 // defines the library name
-}, 'Medium Framework'));
+}, 'MediumFramework'));

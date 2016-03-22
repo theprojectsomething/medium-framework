@@ -31,6 +31,7 @@ var library = "Medium Framework",
     }, {}),
     
     // scripts & sourcemap
+    name = library.replace(/\W+/g, ""),
     script = library.replace(/\W+/g, "-").toLowerCase() + '.js',
     scriptamd = script.replace(/^([^.]+)/, '$1-amd'),
     scriptmin = script.replace('.js', '.min.js'),
@@ -72,7 +73,7 @@ requirejs.optimize({
     code = umd.replace("{{ GLOBAL }}", globalModule)
 
     // include library name
-    .replace("{{ NAME }}", library)
+    .replace("{{ NAME }}", name)
 
     // include cleaned script
     .replace("{{ SCRIPT }}", function () {
