@@ -32,8 +32,9 @@ var library = "Medium Framework",
     
     // scripts & sourcemap
     name = library.replace(/\W+/g, ""),
-    script = library.replace(/\W+/g, "-").toLowerCase() + '.js',
-    scriptamd = script.replace(/^([^.]+)/, '$1-amd'),
+    version = require( '../package.json' ).version,
+    script = library.replace(/\W+/g, "-").toLowerCase() + '-' + version + '.js',
+    scriptamd = script.replace('.js', '.amd.js'),
     scriptmin = script.replace('.js', '.min.js'),
     sourcemap = scriptmin + ".map";
 
@@ -55,6 +56,9 @@ requirejs.optimize({
     // load the UMD wrapper
     var umd = fs.readFileSync('umd-wrapper.js', 'utf-8'),
 
+    // load the AMD script and replace the version
+    amdcode = fs.readFileSync(output + scriptamd, 'utf-8').replace("{{ VERSION }}", version),
+
     // the init module (value is returned by the UMD wrapper)
     globalModule = init,
     
@@ -62,7 +66,7 @@ requirejs.optimize({
     cleaned = amdclean.clean({
       
       // location of file to clean
-      filePath: data.path,
+      code: amdcode,
 
       // include the wrapper, a pseudo global object to return (see 'umd.js')
       globalModules: [ globalModule ],
@@ -77,7 +81,10 @@ requirejs.optimize({
 
     // include cleaned script
     .replace("{{ SCRIPT }}", function () {
+      
+      // include current version
       return cleaned;
+
     }),
 
     // minify
@@ -90,6 +97,7 @@ requirejs.optimize({
     };
   
     // write files
+    fs.writeFileSync(output + scriptamd, amdcode);
     fs.writeFileSync(output + script, code);
     fs.writeFileSync(output + scriptmin, minified.code);
     fs.writeFileSync(output + sourcemap, minified.map);

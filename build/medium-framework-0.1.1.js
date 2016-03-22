@@ -1248,7 +1248,7 @@ framework_xhr = function (_) {
 }(framework_util);
 main = function (View, Module, Router, Props, Util, XHR) {
   return {
-    version: 0.1,
+    version: '0.1.1',
     View: View,
     Module: Module,
     Router: Router,

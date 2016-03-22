@@ -13,7 +13,7 @@ define([
   'framework/xhr',
 ], function(View, Module, Router, Props, Util, XHR){
   return {
-    version: 0.1,
+    version: "{{ VERSION }}",
     View: View,
     Module: Module,
     Router: Router,
