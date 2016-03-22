@@ -36,6 +36,7 @@ var library = "Medium Framework",
     script = library.replace(/\W+/g, "-").toLowerCase() + '-' + version + '.js',
     scriptamd = script.replace('.js', '.amd.js'),
     scriptmin = script.replace('.js', '.min.js'),
+    scriptnoversion = scriptmin.replace('-' + version, ''),
     sourcemap = scriptmin + ".map";
 
 // clean the output directory
@@ -101,6 +102,7 @@ requirejs.optimize({
     fs.writeFileSync(output + script, code);
     fs.writeFileSync(output + scriptmin, minified.code);
     fs.writeFileSync(output + sourcemap, minified.map);
+    fs.writeFileSync(output + scriptnoversion, minified.code);
   }
 }, function (e) {
 
@@ -111,6 +113,7 @@ requirejs.optimize({
   list = [
     [scriptamd, "    AMD only"],
     [script, "-------------\n   UMD build"],
+    [scriptnoversion, "-------------\n versionless"],
   ];
 
   // check to include minified scripts
