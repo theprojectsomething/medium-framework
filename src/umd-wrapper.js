@@ -1,7 +1,6 @@
 // UMD Wrapper
 //  - http://ifandelse.com/its-not-hard-making-your-library-support-amd-and-commonjs/
 //  - replace SCRIPT with processed script
-//  - replace GLOBAL with with globalModules variable name
 //  - replace NAME with library name
 (function (root, factory, name) {
   
@@ -23,13 +22,13 @@
 }(this, function () {
 
   // override window object, processed sript attaches global method to it below
-  var window = {};
+  var UMDfactory = true;
 
 	// processed script
 	{{ SCRIPT }}
 
 	// return main pseudo global method from script
-  return window[ '{{ GLOBAL }}' ];
+  return UMDfactory;
 
 // defines the library name
 }, '{{ NAME }}'));

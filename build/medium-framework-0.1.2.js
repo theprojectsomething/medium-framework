@@ -1,7 +1,6 @@
 // UMD Wrapper
 //  - http://ifandelse.com/its-not-hard-making-your-library-support-amd-and-commonjs/
 //  - replace SCRIPT with processed script
-//  - replace GLOBAL with with globalModules variable name
 //  - replace NAME with library name
 (function (root, factory, name) {
   
@@ -23,7 +22,7 @@
 }(this, function () {
 
   // override window object, processed sript attaches global method to it below
-  var window = {};
+  var UMDfactory = true;
 
 	// processed script
 	;(function() {
@@ -1247,8 +1246,8 @@ framework_xhr = function (_) {
   return XHR;
 }(framework_util);
 main = function (View, Module, Router, Props, Util, XHR) {
-  return {
-    version: '0.1.1',
+  var framework = {
+    version: '0.1.2',
     View: View,
     Module: Module,
     Router: Router,
@@ -1256,12 +1255,16 @@ main = function (View, Module, Router, Props, Util, XHR) {
     _: Util,
     XHR: XHR
   };
+  // set to UMD variable (see 'umd-wrapper.js')
+  if (typeof UMDfactory !== 'undefined') {
+    UMDfactory = framework;
+  }
+  return framework;
 }(framework_view, framework_module, framework_router, framework_props, framework_util, framework_xhr);
-window.main = main;
 }());
 
 	// return main pseudo global method from script
-  return window[ 'main' ];
+  return UMDfactory;
 
 // defines the library name
 }, 'MediumFramework'));

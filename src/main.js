@@ -12,7 +12,8 @@ define([
   'framework/util',
   'framework/xhr',
 ], function(View, Module, Router, Props, Util, XHR){
-  return {
+
+  var framework = {
     version: "{{ VERSION }}",
     View: View,
     Module: Module,
@@ -21,4 +22,11 @@ define([
     _: Util,
     XHR: XHR
   };
+
+  // set to UMD variable (see 'umd-wrapper.js')
+  if(typeof UMDfactory !== "undefined") {
+    UMDfactory = framework;
+  }
+
+  return framework;
 });

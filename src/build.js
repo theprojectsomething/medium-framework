@@ -69,16 +69,10 @@ requirejs.optimize({
       // location of file to clean
       code: amdcode,
 
-      // include the wrapper, a pseudo global object to return (see 'umd.js')
-      globalModules: [ globalModule ],
-
     }),
 
-    // include global script variable
-    code = umd.replace("{{ GLOBAL }}", globalModule)
-
     // include library name
-    .replace("{{ NAME }}", name)
+    code = umd.replace("{{ NAME }}", name)
 
     // include cleaned script
     .replace("{{ SCRIPT }}", function () {

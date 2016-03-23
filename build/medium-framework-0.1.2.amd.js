@@ -1572,8 +1572,9 @@ define('main',[
   'framework/util',
   'framework/xhr',
 ], function(View, Module, Router, Props, Util, XHR){
-  return {
-    version: "0.1.1",
+
+  var framework = {
+    version: "0.1.2",
     View: View,
     Module: Module,
     Router: Router,
@@ -1581,5 +1582,12 @@ define('main',[
     _: Util,
     XHR: XHR
   };
+
+  // set to UMD variable (see 'umd-wrapper.js')
+  if(typeof UMDfactory !== "undefined") {
+    UMDfactory = framework;
+  }
+
+  return framework;
 });
 
