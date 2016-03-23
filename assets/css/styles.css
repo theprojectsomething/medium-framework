@@ -1,0 +1,47 @@
+ html {
+    font-family: 'Montserrat', sans-serif;
+    color: #222;
+    font-size: 2.083vw;
+}
+
+@media (min-width: 768px) {
+    html {
+        font-size: 1em;
+    }
+}
+
+html, body {
+    margin: 0;
+}
+
+.body-wrap {
+    padding: 0 1em;
+    max-width: 1200px;
+    margin: 0 auto;
+    box-sizing: border-box;
+}
+
+header {
+    text-align: center;
+    margin: 5em;
+}
+
+header h1 {
+    font-family: 'Montserrat Subrayada', sans-serif;
+    font-weight: 700;
+    font-size: 5.7em;
+    margin: 0;
+    line-height: 0.75em;
+}
+
+header sub {
+    font-size: 1em;
+    text-transform: uppercase;
+    vertical-align: inherit;
+}
+
+iframe[src^="//codepen.io"] {
+    max-width: 875px;
+    margin: 0 auto;
+    display: block;
+}
