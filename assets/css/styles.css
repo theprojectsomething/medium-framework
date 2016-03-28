@@ -118,7 +118,7 @@ a.download {
     font-size: 1.2em;
     border-radius: 0.25em;
     position: relative;
-    margin: 2em;
+    margin: 2em 0;
     display: inline-block;
 }
 
@@ -168,4 +168,23 @@ footer a {
 
 footer a:hover {
     border-bottom: 1px dotted;
+}
+
+.docs .nav {
+    width: 19em;
+    box-shadow: 2px 2px 2px rgba(0,0,0,0.1);
+    height: 100vh;
+    padding: 2.5em 1.5em;
+    box-sizing: border-box;
+    overflow: scroll;
+    position: fixed;
+}
+
+.docs .nav header {
+    margin: 0 0 2em;
+    font-size: 0.6em;
+}
+
+.docs .content {
+    margin-left: 19em;
 }
