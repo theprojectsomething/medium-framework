@@ -36,9 +36,8 @@
         </header>
 
         <nav>
-            <a href="#intro">An Introduction</a>
             <ol>
-                <li><a href="#setting-up">Setting up</a></li>
+                <li><a href="#setting-up">A simple view</a></li>
             </ol>
 
         </nav>       
@@ -55,9 +54,22 @@
 
     <main class="content">
         <div class="body-wrap">
-
+            <article>
+                <h2 id="setting-up">A simple view</h2>
+                <iframe src="//s.codepen.io/theprojectsomething/debug/GZEVmR"></iframe>
+            </article>
         </div>
     </main>
+
+    <script>
+
+    // post message listener
+    window.addEventListener("message", function (e) {
+        if(typeof e.data !== "object" || !e.data.path) return;
+        var $el = document.querySelector('iframe[src*="' + e.data.path + '"]');
+        if(e.data.height) $el.height = e.data.height;
+    });
+    </script>
   </body>
 
 

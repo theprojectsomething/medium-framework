@@ -188,3 +188,9 @@ footer a:hover {
 .docs .content {
     margin-left: 19em;
 }
+
+.docs iframe[src*="codepen.io"] {
+    width: 100%;
+    max-width: 960px;
+    border: none;
+}
