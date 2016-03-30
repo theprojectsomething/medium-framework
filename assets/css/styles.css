@@ -3,6 +3,7 @@
     color: #222;
     font-size: 2.083vw;
     text-align: center;
+    line-height: 1.4em;
 }
 
 @media (min-width: 768px) {
@@ -24,6 +25,7 @@ html, body {
 
 header {
     margin: 5em;
+    line-height: normal;
 }
 
 header h1 {
@@ -109,7 +111,10 @@ abbr:hover:after {
     opacity: 1;
 }
 
-a.download {
+.button {
+    background: white;
+    border: none;
+    font-family: inherit;
     color: inherit;
     text-decoration: none;
     box-shadow: 0.05em 0.05em 0.2em rgba(0,0,0,0.2);
@@ -118,16 +123,21 @@ a.download {
     font-size: 1.2em;
     border-radius: 0.25em;
     position: relative;
-    margin: 2em 0;
     display: inline-block;
+    cursor: pointer;
+    line-height: 1.75em;
 }
 
-a.download:hover {
+.button:hover {
     background: #222;
     color: white;
 }
 
-a.download .octicon {
+.download {
+    margin: 2em 0;
+}
+
+.download .octicon {
     height: 1.2em;
     position: relative;
     vertical-align: text-bottom;
@@ -135,14 +145,14 @@ a.download .octicon {
     top: -0.05em;
 }
 
-@media (min-width: 768px) {
-    a.download {
-        font-size: 0.8em;
-    }
+.download .octicon path {
+    fill: currentColor;
 }
 
-a.download .octicon path {
-    fill: currentColor;
+@media (min-width: 768px) {
+    .button {
+        font-size: 0.8em;
+    }
 }
 
 footer {
@@ -164,6 +174,7 @@ footer a {
     color: inherit;
     text-decoration: none;
     display: inline-block;
+    line-height: 1.4em;
 }
 
 footer a:hover {
@@ -178,6 +189,7 @@ footer a:hover {
     box-sizing: border-box;
     overflow: scroll;
     position: fixed;
+    text-align: left;
 }
 
 .docs .nav header {
@@ -185,12 +197,43 @@ footer a:hover {
     font-size: 0.6em;
 }
 
+.docs .nav ol {
+    list-style: none;
+    padding: 0;
+    font-size: 0.8em;
+}
+
+.docs .nav ol a {
+    color: inherit;
+    text-decoration: none;
+    border-bottom: 1px dotted;
+}
+
+.docs .nav ol a:hover {
+    border-bottom-color: transparent;
+}
+
 .docs .content {
-    margin-left: 19em;
+    margin-left: 20em;
+    text-align: left;
+    overflow: auto;
+}
+
+.docs .content .body-wrap {
+    margin: 0;
+}
+
+.docs .content .body-wrap article {
+    margin-bottom: 3.5em;
 }
 
 .docs iframe[src*="codepen.io"] {
+    margin: 0;
     width: 100%;
     max-width: 960px;
     border: none;
+}
+
+.hidden {
+    display: none !important;
 }
