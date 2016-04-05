@@ -8,13 +8,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
 
-    <title>Docs | Medium: Decoupled Javascript</title>
+    <title>Docs | Medium Framework</title>
     <meta name="description" content="It's the documentation page! Medium is a 7.2kb decoupled javascript micro-framework that lets you tune into your app components like never before. Unlimited communication. Zero interference.">
     <link rel="shortcut icon" type="image/png" href="../assets/images/logox32.png">
 
     <meta property="og:site_name" content="Medium Framework">
-    <meta property="og:title" content="Docs | Medium: A Decoupled Javascript Micro-Framework">
-    <meta property="og:description" content="It's the documentation page! Medium is a 7.2kb decoupled javascript micro-framework that lets you tune into your app components like never before. Unlimited communication. Zero interference.">
+    <meta property="og:title" content="Docs | Medium Framework">
+    <meta property="og:description" content="It's the documentation page! Medium Framework is a 7.2kb decoupled javascript micro-framework that lets you tune into your app components like never before. Unlimited communication. Zero interference.">
     <meta property="og:image" content="https://theprojectsomething.github.io/medium-framework/assets/images/logo.png">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://theprojectsomething.github.io/medium-framework/">
@@ -23,17 +23,20 @@
     <meta name="twitter:site" content="https://theprojectsomething.github.io/medium-framework/">
 
 
+    <link href='https://fonts.googleapis.com/css?family=Montserrat+Subrayada:400,700|Montserrat' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="//codepen.io/theprojectsomething/pen/eZGeZq.css">
     <link rel="stylesheet" href="../assets/css/styles.css">
-    <link href='//fonts.googleapis.com/css?family=Montserrat+Subrayada:400,700|Montserrat' rel='stylesheet' type='text/css'>
   </head>
 
   <body class="docs">
 
     <aside class="nav">
+
         <header>
-            <a href="../">
-            <h1>Medium</h1>
-            <sub>A Decoupled Javascript Micro-Framework</sub>
+            <a href="../" aria-label="Medium Framework: decoupled javascript" class="site-logo site-logo--small">
+              <h1 aria-hidden="true">
+                <span>Medium</span> <sub>Framework</sub> <sub>Decoupled Javascript</sub>
+              </h1>
             </a>
         </header>
 
@@ -51,7 +54,7 @@
         </footer>
     </aside>
 
-    <main class="content">
+    <main class="content inverse">
         <div class="body-wrap">
             <section>
                 <article>
@@ -69,16 +72,63 @@
             </section>
 
             <section>
-                <header>XHR</header>
+                <h2 data-nav>XHR</h2>
                 <article>
                     <h3 data-nav>xhr.get ( props )</h3>
-                    <p>Sends an XMLHttpRequest</p>
+                    <p>Send a "GET" XMLHttpRequest
                     <code>
-                        .get({
-                            url: "string",
-                            [data]: {key: value} or "string"
-                        })
+var xhr = XHR.get({
+    url: "string",
+    [data]: "string"|{object},
+    [complete, error, progress, abort]: fn(response: "string"|{object}, xhr),
+});
                     </code>
+                    </p>
+                </article>
+                <article>
+                    <h3 data-nav>xhr.post ( props )</h3>
+                    <p>Send a "POST" XMLHttpRequest
+                    <code>
+var xhr = XHR.post({
+    url: "string",
+    [data]: "string"|{object},
+    [complete, error, progress, abort]: fn(response: "string"|{object}, xhr),
+    [header="application/json;charset=UTF-8"]: "string"
+});
+                    </code>
+                    </p>
+                </article>
+                <article>
+                    <h3 data-nav>xhr.request ( props )</h3>
+                    <p>Send a customised XMLHttpRequest
+                    <code>
+var xhr = XHR.request({
+    url: "string",
+    [type="GET"]: "string",
+    [data]: "string"|{object},
+    [complete, error, progress, abort]: fn(response: "string"|{object}, xhr),
+    [header="application/json;charset=UTF-8"]: "string"
+});
+                    </code>
+                    </p>
+                </article>
+            </section>
+
+            <section>
+                <h2 data-nav>Utility</h2>
+                <article>
+                    <h3 data-nav>_.clone ( a, b, deep, transform, defaults )</h3>
+                    <p>Copy an array or object with various options
+                    <code>
+var copied = _.clone(
+    a: array|object,
+    [b]: array|object,
+    [deep=false]: bool,
+    [transform]: fn(a[ i ]: *, i: int, b: array|object),
+    [defaults]: array|object
+);
+                    </code>
+                    </p>
                 </article>
             </section>
         </div>

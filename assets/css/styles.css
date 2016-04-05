@@ -1,6 +1,5 @@
  html {
     font-family: 'Montserrat', sans-serif;
-    color: #222;
     font-size: 2.083vw;
     text-align: center;
     line-height: 1.4em;
@@ -16,6 +15,11 @@ html, body {
     margin: 0;
 }
 
+body {
+    background: #222;
+    color: white;
+}
+
 .body-wrap {
     padding: 0 1em;
     max-width: 1200px;
@@ -24,27 +28,25 @@ html, body {
 }
 
 header {
-    margin: 5em;
-    line-height: normal;
+    height: 100vh;
+    max-height: 800px;
+    min-height: 30em;
+    position: relative;
+    margin-bottom: 2em;
 }
 
-header a {
-    text-decoration: none;
-    color: inherit;
-}
-
-header h1 {
-    font-family: 'Montserrat Subrayada', sans-serif;
-    font-weight: 700;
-    font-size: 5.7em;
-    margin: 0;
-    line-height: 0.75em;
-}
-
-header sub {
+.strap {
+    position: absolute;
     font-size: 1em;
-    text-transform: uppercase;
-    vertical-align: inherit;
+    font-weight: 400;
+    bottom: 1em;
+    width: 100%;
+    color: rgba(255, 255, 255, 0.4);
+}
+
+.site-logo:not(.site-logo--small) {
+    top: 50%;
+    transform: translateY(-50%);
 }
 
 iframe[src^="//codepen.io"] {
@@ -77,8 +79,8 @@ abbr {
 }
 
 abbr:hover {
-    background: #222;
-    color: white;
+    background: white;
+    color: #222;
 }
 
 abbr:before {
@@ -103,10 +105,10 @@ abbr:after {
     width: 16.5em;
     left: 50%;
     opacity: 0;
-    color: #222;
+    color: white;
     pointer-events: none;
-    background: rgba(255,255,255,0.95);
-    box-shadow: 0.1em 0.1em 0.4em rgba(255,255,255,1);;
+    background: rgba(34, 34, 34, 0.95);
+    box-shadow: 0.1em 0.1em 0.4em rgba(34, 34, 34, 1);;
     padding: 0.25em;
 }
 
@@ -117,7 +119,7 @@ abbr:hover:after {
 }
 
 .button {
-    background: white;
+    background: black;
     border: none;
     font-family: inherit;
     color: inherit;
@@ -133,7 +135,13 @@ abbr:hover:after {
     line-height: 1.75em;
 }
 
+.inverse .button,
 .button:hover {
+    background: white;
+    color: #222;
+}
+
+.inverse .button:hover {
     background: #222;
     color: white;
 }
@@ -186,6 +194,11 @@ footer a:hover {
     border-bottom: 1px dotted;
 }
 
+.docs {
+    background: white;
+    color: #222;
+}
+
 .docs .nav {
     width: 19em;
     box-shadow: 2px 2px 2px rgba(0,0,0,0.1);
@@ -195,11 +208,15 @@ footer a:hover {
     overflow: scroll;
     position: fixed;
     text-align: left;
+    background: #222;
+    color: white;
 }
 
 .docs .nav header {
+    font-size: 1.25em;
     margin: 0 0 2em;
-    font-size: 0.6em;
+    height: auto;
+    min-height: 0;
 }
 
 .docs .nav ol {
@@ -246,4 +263,8 @@ footer a:hover {
 
 .hidden {
     display: none !important;
+}
+
+code {
+    white-space: pre;
 }
