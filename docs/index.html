@@ -24,7 +24,12 @@
 
 
     <link href='https://fonts.googleapis.com/css?family=Montserrat+Subrayada:400,700|Montserrat' rel='stylesheet' type='text/css'>
+
+    <!-- Medium Framework -->
     <link rel="stylesheet" href="//codepen.io/theprojectsomething/pen/eZGeZq.css">
+    <!-- Show Real Code -->
+    <link rel="stylesheet" href="//codepen.io/theprojectsomething/pen/xVLMRN.css">
+
     <link rel="stylesheet" href="../assets/css/styles.css">
   </head>
 
@@ -63,8 +68,10 @@
                 </article>
                 <article>
                     <h2 data-nav>The View Object</h2>
-                    <p>Below is a view object in it's simplest form:</p>
-                    <iframe height="219" src="//s.codepen.io/theprojectsomething/debug/GZEVmR"></iframe>
+                    
+                    <p>Below is a view object in it's simplest form:
+                    <code data-src="//s.codepen.io/theprojectsomething/pen/eZEWJQ.js"></code>
+                    </p>
 
                     <p><button class="button" data-show='[src*="eZEWJQ"]'>Show the result</button></p>
                     <iframe class="hidden" height='268' scrolling='no' src='//codepen.io/theprojectsomething/embed/eZEWJQ/?height=268&theme-id=22947&default-tab=result' frameborder='no' allowtransparency='true' allowfullscreen='true' style='width: 100%;'>See the Pen <a href='http://codepen.io/theprojectsomething/pen/eZEWJQ/'>Medium Framework: View Explorer Example</a> by Som (<a href='http://codepen.io/theprojectsomething'>@theprojectsomething</a>) on <a href='http://codepen.io'>CodePen</a>.</iframe>
@@ -75,41 +82,20 @@
                 <h2 data-nav>XHR</h2>
                 <article>
                     <h3 data-nav>xhr.get ( props )</h3>
-                    <p>Send a "GET" XMLHttpRequest
-                    <code>
-var xhr = XHR.get({
-    url: "string",
-    [data]: "string"|{object},
-    [complete, error, progress, abort]: fn(response: "string"|{object}, xhr),
-});
-                    </code>
+                    <p>Send a "GET" XMLHttpRequest:
+                        <code data-src="snippets/xhr.get.js"></code>
                     </p>
                 </article>
                 <article>
                     <h3 data-nav>xhr.post ( props )</h3>
-                    <p>Send a "POST" XMLHttpRequest
-                    <code>
-var xhr = XHR.post({
-    url: "string",
-    [data]: "string"|{object},
-    [complete, error, progress, abort]: fn(response: "string"|{object}, xhr),
-    [header="application/json;charset=UTF-8"]: "string"
-});
-                    </code>
+                    <p>Send a "POST" XMLHttpRequest:
+                        <code data-src="snippets/xhr.post.js"></code>
                     </p>
                 </article>
                 <article>
                     <h3 data-nav>xhr.request ( props )</h3>
-                    <p>Send a customised XMLHttpRequest
-                    <code>
-var xhr = XHR.request({
-    url: "string",
-    [type="GET"]: "string",
-    [data]: "string"|{object},
-    [complete, error, progress, abort]: fn(response: "string"|{object}, xhr),
-    [header="application/json;charset=UTF-8"]: "string"
-});
-                    </code>
+                    <p>Send a customised XMLHttpRequest:
+                        <code data-src="snippets/xhr.request.js"></code>
                     </p>
                 </article>
             </section>
@@ -118,24 +104,18 @@ var xhr = XHR.request({
                 <h2 data-nav>Utility</h2>
                 <article>
                     <h3 data-nav>_.clone ( a, b, deep, transform, defaults )</h3>
-                    <p>Copy an array or object with various options
-                    <code>
-var copied = _.clone(
-    a: array|object,
-    [b]: array|object,
-    [deep=false]: bool,
-    [transform]: fn(a[ i ]: *, i: int, b: array|object),
-    [defaults]: array|object
-);
-                    </code>
+                    <p>Copy an array or object with various options:
+                        <code data-src="snippets/_.clone.js"></code>
                     </p>
                 </article>
             </section>
         </div>
     </main>
 
-
-    <script src="//rawgit.com/theprojectsomething/medium-framework/master/build/medium-framework.min.js"></script>
+    <!-- Medium Framework -->
+    <script src="//codepen.io/theprojectsomething/pen/eZGeZq.js"></script>
+    <!-- Show Real Code -->
+    <script src="//codepen.io/theprojectsomething/pen/xVLMRN.js"></script>
     <script src="../assets/js/docs-nav.js"></script>
     <script src="../assets/js/docs-content.js"></script>
     <script>
