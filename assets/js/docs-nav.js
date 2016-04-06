@@ -35,7 +35,7 @@ MediumFramework.View.extend({
           $el.id = $el.textContent.replace(/\W+/g, '-').toLowerCase();
           return html + `
           <li>
-            <a href="#${$el.id}">${$el.textContent}</a>
+            <a href="#${$el.id}">${$el.textContent.replace(/ \(.*$/, '')}</a>
           </li>`;
         }.bind( this ), '');
       }
