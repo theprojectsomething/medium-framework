@@ -226,10 +226,10 @@ footer a:hover {
 .docs .nav ol {
     list-style: none;
     padding: 0;
-    font-size: 0.8em;
 }
 
 .docs .nav ol a {
+    display: inline-block;
     color: inherit;
     text-decoration: none;
     border-bottom: 1px dotted;
@@ -237,6 +237,16 @@ footer a:hover {
 
 .docs .nav ol a:hover {
     border-bottom-color: transparent;
+}
+
+.docs .nav a.tag-H2 {
+    font-size: 0.9em;
+    margin: 0.5em 0 0 0.5em;
+}
+
+.docs .nav a.tag-H3 {
+    font-size: 0.8em;
+    margin-left: 1em;
 }
 
 .docs .content {
