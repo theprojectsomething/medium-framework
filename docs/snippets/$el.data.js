@@ -1,9 +1,9 @@
 // gets a previously set value
-var value = $el.data( key );
+var value = $( selector ).data( key );
 
-// sets data and returns $el
+// sets data and returns $( selector )
 /***
-	@[key]: this can be a string or an object of {key: value} pairs
-	@[value]: if `key` is a string, `value` is required
+	@[key]: this can be a string or {key: value} pairs
+	@[value]: this is required if `key` is a string
 */
-$el.data( key , [value] );
+$( selector ).data( key , [value] );

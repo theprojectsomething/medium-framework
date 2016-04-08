@@ -1,9 +1,9 @@
 // gets a previously set attribute
-var attr = $el.attr( name );
+var attr = $( selector ).attr( name );
 
-// sets an attribute or list of atributes and returns $el
+// sets an attribute or list of atributes and returns $( selector )
 /***
-	@[name]: this can be a string or an object of {name: value} pairs
-	@[value]: if `name` is a string, `value` is required
+	@[name]: this can be a string or {name: value} pairs
+	@[value]: this is required if `name` is a string
 */
-$el.attr( name , [value] );
+$( selector ).attr( name , [value] );
