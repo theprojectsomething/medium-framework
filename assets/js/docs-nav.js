@@ -34,12 +34,13 @@ MediumFramework.View.extend({
         return list.reduce(function (html, $el) {
           var text = $el.textContent.replace(/ \(.*$/, '');
           $el.id = $el.id || text.replace(/^_/, 'utility')
-                       .replace(/(^\$)|(\( ?)|( ?\))/g, '')
+                       .replace(/^\$[(.]/, 'dom-')
+                       .replace(/(\( ?)|( ?\))/g, '')
                        .replace(/[^$\w]+/g, '-')
                        .toLowerCase();
           return html + `
-          <li>
-            <a href="#${$el.id}" class="tag-${$el.tagName}">${text}</a>
+          <li class="tag-${$el.tagName}">
+            <a href="#${$el.id}">${text}</a>
           </li>`;
         }.bind( this ), '');
       }

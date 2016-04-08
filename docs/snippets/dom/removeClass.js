@@ -1,0 +1,1 @@
+$( selector ).removeClass( name, name, ...name );

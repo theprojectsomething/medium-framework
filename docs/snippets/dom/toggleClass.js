@@ -1,0 +1,1 @@
+$( selector ).toggleClass( name, name, ...name );

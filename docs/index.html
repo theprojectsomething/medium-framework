@@ -83,47 +83,19 @@
                 <article>
                     <h3 data-nav>xhr.get ( props )</h3>
                     <p>Send a "GET" XMLHttpRequest:
-                        <code data-src="snippets/xhr.get.js"></code>
+                        <code data-src="snippets/xhr/get.js"></code>
                     </p>
                 </article>
                 <article>
                     <h3 data-nav>xhr.post ( props )</h3>
                     <p>Send a "POST" XMLHttpRequest:
-                        <code data-src="snippets/xhr.post.js"></code>
+                        <code data-src="snippets/xhr/post.js"></code>
                     </p>
                 </article>
                 <article>
                     <h3 data-nav>xhr.request ( props )</h3>
                     <p>Send a customised XMLHttpRequest:
-                        <code data-src="snippets/xhr.request.js"></code>
-                    </p>
-                </article>
-            </section>
-
-            <section>
-                <h2 id="dom" data-nav>DOM Elements</h2>
-                <article>
-                    <h3 id="dom-selector" data-nav>$( selector )</h3>
-                    <p>Get a list of matching elements in the DOM:
-                        <code data-src="snippets/$el.js"></code>
-                    </p>
-                </article>
-                <article>
-                    <h3 data-nav>$el.data ( key, value )</h3>
-                    <p>Retrieve or store arbitrary data on an element or list of elements:
-                        <code data-src="snippets/$el.data.js"></code>
-                    </p>
-                </article>
-                <article>
-                    <h3 data-nav>$el.attr ( attributeName, value )</h3>
-                    <p>Get or set an attribute on an element or list of elements:
-                        <code data-src="snippets/$el.attr.js"></code>
-                    </p>
-                </article>
-                <article>
-                    <h3 data-nav>$el.removeAttr ( attributeName )</h3>
-                    <p>Remove an attribute from an element or list of elements:
-                        <code data-src="snippets/$el.removeAttr.js"></code>
+                        <code data-src="snippets/xhr/request.js"></code>
                     </p>
                 </article>
             </section>
@@ -133,7 +105,125 @@
                 <article>
                     <h3 data-nav>_.clone ( a, b, deep, transform, defaults )</h3>
                     <p>Copy an array or object with various options:
-                        <code data-src="snippets/lodash.clone.js"></code>
+                        <code data-src="snippets/utility/clone.js"></code>
+                    </p>
+                </article>
+            </section>
+
+            <section>
+                <h2 id="dom" data-nav>DOM Elements</h2>
+                <article>
+                    <h3 data-nav="select">$( selector )</h3>
+                    <p>Get a list of matching elements in the DOM:
+                        <code data-src="snippets/dom/select.js"></code>
+                    </p>
+                </article>
+                <article>
+                    <h3 data-nav>$.addClass ( ...names )</h3>
+                    <p>Add a list of class names to an element or list of elements:
+                        <code data-src="snippets/dom/addClass.js"></code>
+                    </p>
+                </article>
+                <article>
+                    <h3 data-nav>$.removeClass ( ...names )</h3>
+                    <p>Remove a list of class names from an element or list of elements:
+                        <code data-src="snippets/dom/removeClass.js"></code>
+                    </p>
+                </article>
+                <article>
+                    <h3 data-nav>$.toggleClass ( ...names )</h3>
+                    <p>Toggle a list of class names from an element or list of elements:
+                        <code data-src="snippets/dom/toggleClass.js"></code>
+                    </p>
+                </article>
+                <article>
+                    <h3 data-nav>$.hasClass ( name, all )</h3>
+                    <p>Check if a class exists on an element or list of elements:
+                        <code data-src="snippets/dom/hasClass.js"></code>
+                    </p>
+                </article>
+                <article>
+                    <h3 data-nav>$.data ( key, value )</h3>
+                    <p>Retrieve or store arbitrary data on an element or list of elements:
+                        <code data-src="snippets/dom/data.js"></code>
+                    </p>
+                </article>
+                <article>
+                    <h3 data-nav>$.attr ( name, value )</h3>
+                    <p>Get or set an attribute on an element or list of elements:
+                        <code data-src="snippets/dom/attr.js"></code>
+                    </p>
+                </article>
+                <article>
+                    <h3 data-nav>$.removeAttr ( name )</h3>
+                    <p>Remove an attribute from an element or list of elements:
+                        <code data-src="snippets/dom/removeAttr.js"></code>
+                    </p>
+                </article>
+                <article>
+                    <h3 data-nav>$.eq ( index )</h3>
+                    <p>Get the nth element from a list of elements:
+                        <code data-src="snippets/dom/eq.js"></code>
+                    </p>
+                </article>
+                <article>
+                    <h3 data-nav>$.is ( selector )</h3>
+                    <p>Check if any element in a list of elements matches a selector:
+                        <code data-src="snippets/dom/is.js"></code>
+                    </p>
+                </article>
+                <article>
+                    <h3 data-nav>$.clone ( )</h3>
+                    <p>Clone an element or list of elements:
+                        <code data-src="snippets/dom/clone.js"></code>
+                    </p>
+                </article>
+                <article>
+                    <h3 data-nav>$.before ( html )</h3>
+                    <p>Add HTML before an element (to it's parent):
+                        <code data-src="snippets/dom/before.js"></code>
+                    </p>
+                </article>
+                <article>
+                    <h3 data-nav>$.after ( html )</h3>
+                    <p>Add HTML after an element (to it's parent):
+                        <code data-src="snippets/dom/after.js"></code>
+                    </p>
+                </article>
+                <article>
+                    <h3 data-nav>$.prepend ( html )</h3>
+                    <p>Add HTML to the start of an element:
+                        <code data-src="snippets/dom/prepend.js"></code>
+                    </p>
+                </article>
+                <article>
+                    <h3 data-nav>$.append ( html )</h3>
+                    <p>Add HTML to the end of an element:
+                        <code data-src="snippets/dom/append.js"></code>
+                    </p>
+                </article>
+                <article>
+                    <h3 data-nav>$.text ( string )</h3>
+                    <p>Get or set the text content of an element or list of elements:
+                        <code data-src="snippets/dom/text.js"></code>
+                    </p>
+                </article>
+                <article>
+                    <h3 data-nav>$.html ( html )</h3>
+                    <p>Get or set the html content of an element or list of elements:
+                        <code data-src="snippets/dom/html.js"></code>
+                    </p>
+                </article>
+                <article>
+                    <h3 data-nav>$.val ( value )</h3>
+                    <p>Gets or sets the value of an input element:
+                        <code data-src="snippets/dom/val.js"></code>
+                    </p>
+                </article>
+                <article>
+                    <h3 data-nav>$.prop ( name, value )</h3>
+                    <p>Get or set a property on an element or list of elements:
+                        <code data-src="snippets/dom/prop.js"></code>
                     </p>
                 </article>
             </section>

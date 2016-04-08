@@ -1,0 +1,1 @@
+var $el = $( selector ).eq( index );

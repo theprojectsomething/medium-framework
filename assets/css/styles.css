@@ -5,6 +5,7 @@
     line-height: 1.4em;
     animation: 1.8s MediumFramework-colours steps(1) infinite;
     background: currentColor;
+    margin: 0;
 }
 
 @media (min-width: 768px) {
@@ -13,15 +14,12 @@
     }
 }
 
-html, body {
-    margin: 0;
-}
-
 body {
     background: #222;
     color: white;
     box-shadow: 0 0 2em black;
     min-height: 100vh;
+    margin: 0;
 }
 
 .body-wrap {
@@ -123,30 +121,31 @@ abbr:hover:after {
 }
 
 .button {
-    background: black;
-    border: none;
-    font-family: inherit;
-    color: inherit;
-    text-decoration: none;
-    box-shadow: 0.05em 0.05em 0.2em rgba(0,0,0,0.2);
-    vertical-align: middle;
-    padding: 0.5em 1.25em 0.45em 1.1em;
-    font-size: 1.2em;
+    background: rgb(44, 44, 44);
     border-radius: 0.25em;
-    position: relative;
-    display: inline-block;
+    border: none;
+    box-shadow: 0.05em 0.05em 0.2em rgba(0,0,0,1);
+    color: inherit;
     cursor: pointer;
+    display: inline-block;
+    font-family: inherit;
+    font-size: 1.2em;
     line-height: 1.75em;
+    padding: 0.5em 1.25em 0.45em 1.1em;
+    position: relative;
+    text-decoration: none;
+    vertical-align: middle;
 }
 
 .inverse .button,
 .button:hover {
     background: white;
     color: #222;
+    box-shadow: 0.05em 0.05em 0.2em rgba(0,0,0,0.2);
 }
 
 .inverse .button:hover {
-    background: #222;
+    background: rgb(44, 44, 44);
     color: white;
 }
 
@@ -173,7 +172,7 @@ abbr:hover:after {
 }
 
 footer {
-    margin: 1em 0 2em;
+    padding: 1em 0 2em;
 }
 
 footer sub {
@@ -232,19 +231,33 @@ footer a:hover {
     display: inline-block;
     color: inherit;
     text-decoration: none;
-    border-bottom: 1px dotted;
+    border-bottom: 1px dotted transparent;
+    margin-bottom: 0.1em;
+    line-height: 1.4em;
 }
 
 .docs .nav ol a:hover {
-    border-bottom-color: transparent;
+    border-bottom-color: white;
 }
 
-.docs .nav a.tag-H2 {
+.docs .nav li:first-child {
+    margin-top: 0;
+    border: none;
+}
+
+.docs .nav .tag-H2 {
+    display: block;
+    border-top: 2px solid rgba(255, 255, 255, 0.1);
     font-size: 0.9em;
-    margin: 0.5em 0 0 0.5em;
+    margin-top: 0.75em;
+    padding-top: 0.75em;
 }
 
-.docs .nav a.tag-H3 {
+.docs .nav .tag-H2 a {
+    margin-left: 0.5em;
+}
+
+.docs .nav .tag-H3 a {
     font-size: 0.8em;
     margin-left: 1em;
 }
@@ -260,12 +273,12 @@ footer a:hover {
     padding-top: 3.5em;
 }
 
-.docs .content .body-wrap article h2 {
-    margin: 0;
+.docs .content .body-wrap section {
+    margin-bottom: 3em;
 }
 
 .docs .content .body-wrap article {
-    margin-bottom: 3.5em;
+    margin-bottom: 1em;
 }
 
 .docs iframe[src*="codepen.io"] {
@@ -275,8 +288,16 @@ footer a:hover {
     border: none;
 }
 
+.docs .content h1,
+.docs .content h2,
+.docs .content h3 {
+    margin: 0;
+    padding: 1em 0 0;
+}
+
 .docs code[data-src] {
     font-size: 0.9em;
+    max-width: 50em;
 }
 
 @media (max-width: 767px) {

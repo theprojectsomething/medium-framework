@@ -1,0 +1,1 @@
+var bool = $( selector ).is( selector );

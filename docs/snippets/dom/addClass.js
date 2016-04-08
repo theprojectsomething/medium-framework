@@ -1,0 +1,1 @@
+$( selector ).addClass( name, name, ...name );
