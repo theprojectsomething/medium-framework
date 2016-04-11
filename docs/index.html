@@ -46,6 +46,9 @@
         </header>
 
         <nav class="menu">
+            <div class="search--wrap">
+                <input type="text" name="search" placeholder="Search the docs">
+            </div>
             <ol></ol>
         </nav>       
 
@@ -62,12 +65,10 @@
     <main class="content inverse">
         <div class="body-wrap">
             <section>
+                <h2 data-nav data-nosearch>Introduction</h2>
+                <p>Welcome to the Medium Framework docs.</p>
                 <article>
-                    <h2 data-nav>Introduction</h2>
-                    <p>Welcome to the Medium Framework docs.</p>
-                </article>
-                <article>
-                    <h2 data-nav>The View Object</h2>
+                    <h3 data-nav>The View Object</h3>
                     
                     <p>Below is a view object in it's simplest form:
                     <code data-src="//s.codepen.io/theprojectsomething/pen/eZEWJQ.js"></code>
@@ -75,28 +76,6 @@
 
                     <p><button class="button" data-show='[src*="eZEWJQ"]'>Show the result</button></p>
                     <iframe class="hidden" height='268' scrolling='no' src='//codepen.io/theprojectsomething/embed/eZEWJQ/?height=268&theme-id=22947&default-tab=result' frameborder='no' allowtransparency='true' allowfullscreen='true' style='width: 100%;'>See the Pen <a href='http://codepen.io/theprojectsomething/pen/eZEWJQ/'>Medium Framework: View Explorer Example</a> by Som (<a href='http://codepen.io/theprojectsomething'>@theprojectsomething</a>) on <a href='http://codepen.io'>CodePen</a>.</iframe>
-                </article>
-            </section>
-
-            <section>
-                <h2 data-nav>XHR</h2>
-                <article>
-                    <h3 data-nav>xhr.get ( props )</h3>
-                    <p>Send a "GET" XMLHttpRequest:
-                        <code data-src="snippets/xhr/get.js"></code>
-                    </p>
-                </article>
-                <article>
-                    <h3 data-nav>xhr.post ( props )</h3>
-                    <p>Send a "POST" XMLHttpRequest:
-                        <code data-src="snippets/xhr/post.js"></code>
-                    </p>
-                </article>
-                <article>
-                    <h3 data-nav>xhr.request ( props )</h3>
-                    <p>Send a customised XMLHttpRequest:
-                        <code data-src="snippets/xhr/request.js"></code>
-                    </p>
                 </article>
             </section>
 
@@ -114,49 +93,49 @@
                 <h2 id="dom" data-nav>DOM Elements</h2>
                 <article>
                     <h3 data-nav="select">$( selector )</h3>
-                    <p>Get a list of matching elements in the DOM:
+                    <p>Select matching elements in the DOM:
                         <code data-src="snippets/dom/select.js"></code>
                     </p>
                 </article>
                 <article>
                     <h3 data-nav>$.addClass ( ...names )</h3>
-                    <p>Add a list of class names to an element or list of elements:
+                    <p>Add a list of class names to the selected elements:
                         <code data-src="snippets/dom/addClass.js"></code>
                     </p>
                 </article>
                 <article>
                     <h3 data-nav>$.removeClass ( ...names )</h3>
-                    <p>Remove a list of class names from an element or list of elements:
+                    <p>Remove a list of class names from the selected elements:
                         <code data-src="snippets/dom/removeClass.js"></code>
                     </p>
                 </article>
                 <article>
                     <h3 data-nav>$.toggleClass ( ...names )</h3>
-                    <p>Toggle a list of class names from an element or list of elements:
+                    <p>Toggle a list of class names from the selected elements:
                         <code data-src="snippets/dom/toggleClass.js"></code>
                     </p>
                 </article>
                 <article>
                     <h3 data-nav>$.hasClass ( name, all )</h3>
-                    <p>Check if a class exists on an element or list of elements:
+                    <p>Check if a class exists on the selected elements:
                         <code data-src="snippets/dom/hasClass.js"></code>
                     </p>
                 </article>
                 <article>
                     <h3 data-nav>$.data ( key, value )</h3>
-                    <p>Retrieve or store arbitrary data on an element or list of elements:
+                    <p>Retrieve or store arbitrary data on the selected elements:
                         <code data-src="snippets/dom/data.js"></code>
                     </p>
                 </article>
                 <article>
                     <h3 data-nav>$.attr ( name, value )</h3>
-                    <p>Get or set an attribute on an element or list of elements:
+                    <p>Get or set an attribute on the selected elements:
                         <code data-src="snippets/dom/attr.js"></code>
                     </p>
                 </article>
                 <article>
                     <h3 data-nav>$.removeAttr ( name )</h3>
-                    <p>Remove an attribute from an element or list of elements:
+                    <p>Remove an attribute from the selected elements:
                         <code data-src="snippets/dom/removeAttr.js"></code>
                     </p>
                 </article>
@@ -168,13 +147,13 @@
                 </article>
                 <article>
                     <h3 data-nav>$.is ( selector )</h3>
-                    <p>Check if any element in a list of elements matches a selector:
+                    <p>Check if any of the selected elements match a selector:
                         <code data-src="snippets/dom/is.js"></code>
                     </p>
                 </article>
                 <article>
                     <h3 data-nav>$.clone ( )</h3>
-                    <p>Clone an element or list of elements:
+                    <p>Clone the selected elements:
                         <code data-src="snippets/dom/clone.js"></code>
                     </p>
                 </article>
@@ -204,13 +183,13 @@
                 </article>
                 <article>
                     <h3 data-nav>$.text ( string )</h3>
-                    <p>Get or set the text content of an element or list of elements:
+                    <p>Get or set the text content of the selected elements:
                         <code data-src="snippets/dom/text.js"></code>
                     </p>
                 </article>
                 <article>
                     <h3 data-nav>$.html ( html )</h3>
-                    <p>Get or set the html content of an element or list of elements:
+                    <p>Get or set the html content of the selected elements:
                         <code data-src="snippets/dom/html.js"></code>
                     </p>
                 </article>
@@ -222,8 +201,69 @@
                 </article>
                 <article>
                     <h3 data-nav>$.prop ( name, value )</h3>
-                    <p>Get or set a property on an element or list of elements:
+                    <p>Get or set a property on the selected elements:
                         <code data-src="snippets/dom/prop.js"></code>
+                    </p>
+                </article>
+            </section>
+
+            <section>
+                <h2 data-nav>DOM Events</h2>
+                <article>
+                    <h3 data-nav>$.on ( events, delegate, callback )</h3>
+                    <p>Start listening on the selected elements:
+                        <code data-src="snippets/events/on.js"></code>
+                    </p>
+                </article>
+                <article>
+                    <h3 data-nav>$.off ( events, callback )</h3>
+                    <p>Stop listening on the selected elements:
+                        <code data-src="snippets/events/off.js"></code>
+                    </p>
+                </article>
+                <article>
+                    <h3 data-nav>$.trigger ( event, data )</h3>
+                    <p>Trigger an event on the selected elements:
+                        <code data-src="snippets/events/trigger.js"></code>
+                    </p>
+                </article>
+            </section>
+
+             <section>
+                <h2 id="xhr" data-nav>XHR</h2>
+                <article>
+                    <h3 data-nav>xhr.get ( props )</h3>
+                    <p>Send a "GET" XMLHttpRequest:
+                        <code data-src="snippets/xhr/get.js"></code>
+                    </p>
+                </article>
+                <article>
+                    <h3 data-nav>xhr.post ( props )</h3>
+                    <p>Send a "POST" XMLHttpRequest:
+                        <code data-src="snippets/xhr/post.js"></code>
+                    </p>
+                </article>
+                <article>
+                    <h3 data-nav>xhr.request ( props )</h3>
+                    <p>Send a customised XMLHttpRequest:
+                        <code data-src="snippets/xhr/request.js"></code>
+                    </p>
+                </article>
+            </section>
+
+            <section>
+                <h2 data-nav>XHR Events [BROKEN]</h2>
+                <p>Manage listeners on any XHR object (in addition to the callbacks on the <a href="#xhr">xhr</a> methods above)</p>
+                <article>
+                    <h3 data-nav>xhr.on ( events, callback )</h3>
+                    <p>Start listening on an XMLHttpRequest:
+                        <code data-src="snippets/xhr/on.js"></code>
+                    </p>
+                </article>
+                <article>
+                    <h3 data-nav>xhr.off ( events, callback )</h3>
+                    <p>Stop listening on an XMLHttpRequest:
+                        <code data-src="snippets/xhr/off.js"></code>
                     </p>
                 </article>
             </section>
