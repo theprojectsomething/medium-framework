@@ -11,6 +11,12 @@ MediumFramework.View.extend({
         to: "$el:list",
         fn: "on:add",
         set: 'innerHTML',
+        on: {
+          click: {
+            delegate: '.search--nomatch a',
+            fn: 'on:reset'
+          }
+        }
       },
 
       ".menu [name='search']": {
