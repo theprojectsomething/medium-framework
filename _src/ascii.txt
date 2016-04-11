@@ -1,0 +1,62 @@
+var x = `
+   __  ___       ___                          
+  /  |/  /__ ___/ (_)_ ____ _                 
+ / /|_/ / -_) _  / / // /  ' \\                
+/_/__/_/\\__/\\_,_/_/\\_,_/_/_/_/            __  
+  / __/______ ___ _  ___ _    _____  ____/ /__
+ / _// __/ _ \`/  ' \\/ -_) |/|/ / _ \\/ __/  '_/
+/_/ /_/  \\_,_/_/_/_/\\__/|__,__/\\___/_/ /_/\\_\\ 
+                                              `
+
+
+$hero-green: #70D075;
+$hero-blue: #80BBD5;
+$hero-red: #E05F4E;
+
+
+M = green
+e = blue
+d = red
+i = green
+u = blue
+m = red
+F = red
+r = green
+a = blue
+m = red
+e = green
+w = blue
+o = red
+r = green
+k = blue
+
+
+(function (){
+var blue = '#80BBD5', green = '#70D075', red = '#E05F4E',
+a = 'color:' + blue, b = 'color:' + green, c = 'color:' + red,
+ascii = "   %c__  ___       %c__%c_\n  %c/  |/  /%c__ %c___/ %c(_)%c_ __%c__ _\n %c/ /|_/ /%c -_)%c _  /%c / %c// / %c ' \\\n%c/_/%c__%c/%c_%c/%c\\__/%c\\_,_/%c_/%c\\_,_/%c_/_/_/            %c__\n  %c/ __/%c___%c___ %c___ _  %c___ %c_    __%c___  %c____%c/ /__\n %c/ _/%c/ __/%c _ \`%c/  ' \\%c/ -_) %c|/|/ / %c_ \\%c/ __/  %c'_/\n%c/_/ %c/_/  %c\\_,_/%c_/_/_/%c\\__/%c|__,__/%c\\___/%c_/ %c/_/\\_\\";
+
+console.log(ascii, a, c, a, a, b, c, a, b, c, a, b, c, a, b, c, a, c, a, c, a, b, c, a, b, c, b, c, a, b, c, a, b, c, a, b, c, a, b, c, a, b, c, a, b, c, a, b, c, a, b, c, a, b)
+	
+})()
+
+console.log(`
+   %c__  ___       %c__%c_                          
+  %c/  |/  /%c__ %c___/ %c(_)%c_ __%c__ _                 
+ %c/ /|_/ /%c -_)%c _  /%c / %c// / %c ' \\                
+%c/_/%c__%c/%c_%c/%c\\__/%c\\_,_/%c_/%c\\_,_/%c_/_/_/            %c__  
+  %c/ __/%c___%c___ %c___ _  %c___ %c_    __%c___  %c____%c/ /__
+ %c/ _/%c/ __/%c _ \`%c/  ' \\%c/ -_) %c|/|/ / %c_ \\%c/ __/  %c'_/
+%c/_/ %c/_/  %c\\_,_/%c_/_/_/%c\\__/%c|__,__/%c\\___/%c_/ %c/_/\\_\\ 
+                                              `, 
+
+
+'color:#80BBD5', 'color:#E05F4E', 'color:#80BBD5',
+'color:#80BBD5', 'color:#70D075', 'color:#E05F4E', 'color:#80BBD5', 'color:#70D075', 'color:#E05F4E',
+'color:#80BBD5', 'color:#70D075', 'color:#E05F4E', 'color:#80BBD5', 'color:#70D075', 'color:#E05F4E',
+'color:#80BBD5', 'color:#E05F4E', 'color:#80BBD5', 'color:#E05F4E', 'color:#80BBD5', 'color:#70D075', 'color:#E05F4E', 'color:#80BBD5', 'color:#70D075', 'color:#E05F4E', 'color:#70D075',
+'color:#E05F4E', 'color:#80BBD5', 'color:#70D075', 'color:#E05F4E', 'color:#80BBD5', 'color:#70D075', 'color:#E05F4E', 'color:#80BBD5', 'color:#70D075',
+'color:#E05F4E', 'color:#80BBD5', 'color:#70D075', 'color:#E05F4E', 'color:#80BBD5', 'color:#70D075', 'color:#E05F4E', 'color:#80BBD5', 'color:#70D075',
+'color:#E05F4E', 'color:#80BBD5', 'color:#70D075', 'color:#E05F4E', 'color:#80BBD5', 'color:#70D075', 'color:#E05F4E', 'color:#80BBD5', 'color:#70D075'
+);
+
