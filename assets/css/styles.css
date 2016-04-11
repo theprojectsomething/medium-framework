@@ -295,9 +295,71 @@ footer a:hover {
     padding: 1em 0 0;
 }
 
+.docs .content a {
+    color: inherit;
+    display: inline-block;
+    border-bottom: 1px dotted;
+    text-decoration: none;
+    line-height: 1.2em;
+    margin-bottom: 2px;
+}
+
+.docs .content a:hover {
+    border-bottom: 3px double;
+    margin-bottom: 0;
+}
+
 .docs code[data-src] {
     font-size: 0.9em;
     max-width: 50em;
+}
+
+.docs .search--wrap {
+    margin-bottom: 1em;
+    position: relative;
+}
+
+.docs .search--wrap[data-matches]::after {
+    position: absolute;
+    content: "0 Matches";
+    padding: 0.4em;
+    text-align: right;
+    width: 100%;
+    box-sizing: border-box;
+    font-size: 0.8em;
+    visibility: hidden;
+    opacity: 0;
+    transform: translateX(-5%);
+    transition: 0.2s all;
+}
+
+.docs .search--wrap[data-matches]:not([data-matches="-1"])::after {
+    content: attr(data-matches) " Matches";
+    visibility: visible;
+    opacity: 1;
+    transform: translateX(0%);
+}
+
+.docs .search--wrap input {
+    width: 100%;
+    font-size: inherit;
+    padding: 0.6em 0.4em;
+    box-sizing: border-box;
+    border: 1px solid transparent;
+    color: white;
+    background: black;
+}
+
+.docs .search--wrap input:focus {
+    border-color: white;
+}
+
+.docs.search .menu .search--nomatch {
+    opacity: 0.5;
+}
+
+.docs.search .content *:not(.search--match) > .search--nomatch {
+    display: none;
 }
 
 @media (max-width: 767px) {
