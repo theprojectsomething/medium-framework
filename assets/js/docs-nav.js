@@ -18,8 +18,8 @@ MediumFramework.View.extend({
       },
 
       "$el:list": '[data-nav]',
-      "$el:search": '.menu [name="search"]'
-
+      "$el:search": '.menu [name="search"]',
+      "$el:reset": ".search--reset"
     }
   },
 
@@ -31,8 +31,8 @@ MediumFramework.View.extend({
       this.bind();
 
       this.trigger('$el:list');
-      this.on("search", this.fn.on.search)
-
+      this.on("search", this.fn.on.search);
+      this.props.$el.reset.on("click", this.fn.on.reset);
     },
 
     on: {
@@ -87,6 +87,10 @@ MediumFramework.View.extend({
 
         this.props.$el.search.eq(0).parentNode.attr('data-matches', search ? matches : -1);
         $('body').toggleClass('search', matches);
+      },
+
+      reset: function () {
+        this.props.$el.search.val('').trigger('change');
       }
     }
   }

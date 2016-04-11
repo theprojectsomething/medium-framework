@@ -125,7 +125,7 @@ abbr:hover:after {
     border-radius: 0.25em;
     border: none;
     box-shadow: 0.05em 0.05em 0.2em rgba(0,0,0,1);
-    color: inherit;
+    color: white;
     cursor: pointer;
     display: inline-block;
     font-family: inherit;
@@ -137,14 +137,14 @@ abbr:hover:after {
     vertical-align: middle;
 }
 
-.inverse .button,
+.inverse .button:not(.inverse),
 .button:hover {
     background: white;
     color: #222;
     box-shadow: 0.05em 0.05em 0.2em rgba(0,0,0,0.2);
 }
 
-.inverse .button:hover {
+.inverse .button:not(.inverse):hover {
     background: rgb(44, 44, 44);
     color: white;
 }
@@ -356,6 +356,10 @@ footer a:hover {
 
 .docs.search .menu .search--nomatch {
     opacity: 0.5;
+}
+
+.docs:not(.search) .search--reset {
+    display: none;
 }
 
 .docs.search .content *:not(.search--match) > .search--nomatch {
