@@ -289,6 +289,52 @@
         if(e.data.height) $el.height = e.data.height;
     });
     </script>
+
+    <script>
+        (function (){
+            if(!window.console) return;
+
+            var title = "MediumFramework",
+                mf = document.createElement(title);
+            Object.defineProperty(mf, 'id', {
+                configurable: true,
+                get: function () {
+                    delete this.id;
+                    this.id = title;
+                    logo();
+                    return title;
+                }
+            });
+            logo(true);
+            console.log(mf);
+            
+
+            function logo (single) {
+                var blue = 'color:#80BBD5', green = 'color:#70D075', red = 'color:#E05F4E',
+                n = 0, list = [green, blue, red],
+                newlines = "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n",
+                ascii = (single ? "" : newlines) + "   %c__  ___       %c__%c_\n  %c/  |/  /%c__ %c___/ %c(_)%c_ __%c__ _\n %c/ /|_/ /%c -_)%c _  /%c / %c// / %c ' \\\n%c/_/%c__%c/%c_%c/%c\\__/%c\\_,_/%c_/%c\\_,_/%c_/_/_/            %c__\n  %c/ __/%c___%c___ %c___ _  %c___ %c_    __%c___  %c____%c/ /__\n %c/ _/%c/ __/%c _ \`%c/  ' \\%c/ -_) %c|/|/ / %c_ \\%c/ __/  %c'_/\n%c/_/ %c/_/  %c\\_,_/%c_/_/_/%c\\__/%c|__,__/%c\\___/%c_/ %c/_/\\_\\",
+                timeout;
+
+                render();
+                function render () {
+                    clearTimeout(timeout);
+                    if(single) console.clear();
+                    var a = list[n % list.length],
+                        b = list[(n + list.length - 1) % list.length],
+                        c = list[(n + list.length - 2) % list.length];
+                    console.log.apply(console, [ascii, a, c, a, a, b, c, a, b, c, a, b, c, a, b, c, a, c, a, c, a, b, c, a, b, c, b, c, a, b, c, a, b, c, a, b, c, a, b, c, a, b, c, a, b, c, a, b, c, a, b, c, a, b]);
+                    if(n > 25 || single) {
+                        if(!single) logo(true);
+                        return;
+                    }
+                    ++n;
+                    timeout = setTimeout(render, 100);
+                }
+            }
+                
+        })();
+    </script>
   </body>
 
 
