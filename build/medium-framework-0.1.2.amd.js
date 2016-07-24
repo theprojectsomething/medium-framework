@@ -1191,11 +1191,10 @@ define('framework/view',[
             this.set(binding.prop, binding.el, false);
           } else if(_.isObject( bind )) {
 
-            bind.set = bind.set || 'value';
 
             $el = $(bindFrom);
             binding = {
-              input: $el.is('input, textarea') || $el.prop('contentEditable'),
+              input: $el.is('input, textarea') || $el.prop('contentEditable')===true,
               prop: bind.to,
               $el: $el,
               selector: bindFrom,
@@ -1207,6 +1206,9 @@ define('framework/view',[
                 })
               }
             };
+            
+            bind.set = bind.set || (binding.input ? 'value' : 'textContent');
+            
             var fn = bind.fn ? bind.fn.split( ":" ).reduce(function (fn, method) {
               return _.isObject( fn ) ? fn[ method ] : false;
             }, this.fn) : false;
@@ -1216,15 +1218,14 @@ define('framework/view',[
             // set initial value
             this.Props.get(this.name + ":" + binding.prop, bind.val || binding.$el.prop( bind.set ));
 
-            // one-way bind only
-            if( !binding.input ) return;
-
-            // two-way bind
-            this.$el.on(View.$el.event('input change', this), binding.selector, function (e) {
-              binding.current = e.target;
-              this.set(binding.prop, e.target[ bind.set ]);
-              binding.current = false;
-            }.bind( this ));
+            // two-way bind only
+            if( binding.input ) {
+              this.$el.on(View.$el.event('input change', this), binding.selector, function (e) {
+                binding.current = e.target;
+                this.set(binding.prop, e.target[ bind.set ]);
+                binding.current = false;
+              }.bind( this ));
+            }
           }
 
           if(binding && bind.on) {
