@@ -59,11 +59,11 @@ define([
               prop: bind.to,
               $el: $el,
               selector: bindFrom,
-              fn: function (val) {
+              fn: function (input) {
                 binding.$el.forEach(function ($el) {
                   if(binding.current === $el) return;
-                  var value = _.isFunction( fn ) ? fn( val, $el ) : val;
-                  if(!_.isUndefined( value )) $el.prop(bind.set, value);
+                  var output = _.isFunction( fn ) ? fn( input, $el, true ) : input;
+                  if(!_.isUndefined( output )) $el.prop( bind.set, output );
                 })
               }
             };
@@ -72,18 +72,21 @@ define([
             
             var fn = bind.fn ? bind.fn.split( ":" ).reduce(function (fn, method) {
               return _.isObject( fn ) ? fn[ method ] : false;
-            }, this.fn) : false;
+            }, this.fn) : false,
+                val = _.isUndefined( bind.val ) ? this.Props.get(this.name + ":" + binding.prop) || binding.$el.prop( bind.set ) : bind.val;
 
             this.on(binding.prop, binding.fn);
             
-            // set initial value
-            this.Props.get(this.name + ":" + binding.prop, bind.val || binding.$el.prop( bind.set ));
+            // set initial value (get === set when a value is passed)
+            this.Props.get(this.name + ":" + binding.prop, val, true);
 
             // two-way bind only
             if( binding.input ) {
               this.$el.on(View.$el.event('input change', this), binding.selector, function (e) {
                 binding.current = e.target;
-                this.set(binding.prop, e.target[ bind.set ]);
+                var input = e.target[ bind.set ], 
+                    output = _.isFunction( fn ) ? fn( input, e.target, false ) : input;
+                this.set(binding.prop, output);
                 binding.current = false;
               }.bind( this ));
             }
