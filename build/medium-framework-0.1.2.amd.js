@@ -231,6 +231,12 @@ define('framework/util',[], function () {
         }
       }
       return str.join( "&" );
+    },
+
+    cookie: function (name) {
+      // http://stackoverflow.com/a/25490531/720204
+      var value = document.cookie.match('(^|;)\\s*' + name + '\\s*=\\s*([^;]+)');
+      return value ? value.pop() : '';
     }
   };
 
