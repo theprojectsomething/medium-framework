@@ -49,15 +49,15 @@ define([
         if(this.props.base.indexOf(location.origin)!==0) this.props.base = location.origin + this.props.base;
 
         // create $tag if it doesn't exist (and redirects aren't handled by htaccess)
-        if( !$tag.length && !cookieBase ) {
+        if( !$tag.length ) {
           $('head title').after('<base href="' + this.props.base + '">');
-          console.warn(_.template( WarningTemplate )({base: this.props.base, missing: true}));
+          if( !cookieBase ) console.warn(_.template( WarningTemplate )({base: this.props.base, missing: true}));
         }
 
         // or update if different
-        else if( $tag.length && $tag.attr( 'href' )!==this.props.base ){
+        else if( $tag.attr( 'href' )!==this.props.base ){
           $tag.attr('href', this.props.base);
-          console.warn(_.template( WarningTemplate )({base: this.props.base}));
+          if( !cookieBase ) console.warn(_.template( WarningTemplate )({base: this.props.base}));
         }
 
         // set the app title
