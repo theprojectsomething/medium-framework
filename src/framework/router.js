@@ -42,7 +42,10 @@ define([
         var $tag = $('head base');
 
         // set the app base url
-        this.props.base = base || this.props.base || $tag.attr( 'href' ) || window.location.origin;
+        this.props.base = base || this.props.base || this._.cookie('base') || $tag.attr( 'href' ) || window.location.origin;
+
+        // add origin if it doesn't exist
+        if(this.props.base.indexOf(location.origin)!==0) this.props.base = location.origin + this.props.base;
 
         // create $tag if it doesn't exist
         if( !$tag.length ) {
