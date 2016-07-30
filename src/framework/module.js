@@ -28,6 +28,8 @@ define([
             value: val
           });
         });
+      } else {
+        console.warn( 'A view/module is unnamed - it will be unable to communicate:\r', module );
       }
       
       // retain non-wrapped function list
