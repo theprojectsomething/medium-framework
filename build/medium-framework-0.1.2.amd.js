@@ -1254,6 +1254,7 @@ define('framework/view',[
       if( !view.uid ) view.uid = _.randomString( 16 );
       view.bind = View.$el.bind.bind( view );
       view.unbind = View.$el.unbind.bind( view );
+      view.autoBind = View.$el.autoBind.bind( view );
 
       View.$el.set(view);
 
@@ -1269,6 +1270,12 @@ define('framework/view',[
                    _.isString( view.el.selector ) ? $(view.el.selector) : false;
 
         if( !view.$el ) return console.warn( 'View "' + view.name + '": element is incorrectly defined' );
+      },
+
+      autoBind: function (fn, route, router) {
+        router = router || ":router";
+        this.on(router + ":" + (route || this.name), fn || this.fn.render);
+        this.on(router + ":before", this.unbind);
       },
 
       bind: function () {
