@@ -39,22 +39,23 @@ define([
         }.bind( this );
 
         // check for a base tag
-        var $tag = $('head base');
+        var $tag = $('head base'),
+            cookieBase = this._.cookie('base');
 
         // set the app base url
-        this.props.base = base || this.props.base || this._.cookie('base') || $tag.attr( 'href' ) || window.location.origin;
+        this.props.base = base || this.props.base || cookieBase || $tag.attr( 'href' ) || window.location.origin;
 
         // add origin if it doesn't exist
         if(this.props.base.indexOf(location.origin)!==0) this.props.base = location.origin + this.props.base;
 
-        // create $tag if it doesn't exist
-        if( !$tag.length ) {
+        // create $tag if it doesn't exist (and redirects aren't handled by htaccess)
+        if( !$tag.length && !cookieBase ) {
           $('head title').after('<base href="' + this.props.base + '">');
           console.warn(_.template( WarningTemplate )({base: this.props.base, missing: true}));
         }
 
         // or update if different
-        else if($tag.attr( 'href' )!==this.props.base){
+        else if( $tag.length && $tag.attr( 'href' )!==this.props.base ){
           $tag.attr('href', this.props.base);
           console.warn(_.template( WarningTemplate )({base: this.props.base}));
         }
