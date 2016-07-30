@@ -7,8 +7,9 @@
 define([
   "framework/props",
   "framework/el",
-  "framework/util"
-], function (Props, El, _) {
+  "framework/util",
+  "framework/xhr"
+], function (Props, El, _, XHR) {
 
   var Module = {
 
@@ -33,6 +34,18 @@ define([
       Object.defineProperty(module, '_fn', {
         enumerable: false,
         value: _.cloneDeep( module.fn )
+      });
+
+      // add XHR
+      Object.defineProperty(module, 'XHR', {
+        enumerable: false,
+        value: XHR
+      });
+
+      // add utility belt
+      Object.defineProperty(module, '_', {
+        enumerable: false,
+        value: _
       });
 
       // set Props reference

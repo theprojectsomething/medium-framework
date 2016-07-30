@@ -31,7 +31,7 @@
     Utility
 
 **/
-var framework_util, framework_props, framework_el_attr, framework_el_classlist, framework_el_events, framework_el_find, framework_el_content, framework_el, framework_module, framework_view, framework_router, framework_xhr, main;
+var framework_util, framework_props, framework_el_attr, framework_el_classlist, framework_el_events, framework_el_find, framework_el_content, framework_el, framework_xhr, framework_module, framework_view, framework_router, main;
 framework_util = function () {
   var template, Util, _ = {}, fn = {
       init: function (lodash) {
@@ -872,7 +872,68 @@ framework_el = function (Attr, ClassList, Events, Find, Content, _) {
   };
   return El;
 }(framework_el_attr, framework_el_classlist, framework_el_events, framework_el_find, framework_el_content, framework_util);
-framework_module = function (Props, El, _) {
+framework_xhr = function (_) {
+  var XHR = {
+    get: function (props) {
+      props.type = 'GET';
+      props.url = props.url || '';
+      if (props.data) {
+        props.data = _.isString(props.data) ? props.data : _.serialise(props.data);
+        props.url += (props.url.indexOf('?') >= 0 ? '&' : '?') + props.data;
+      }
+      return this.request(props);
+    },
+    post: function (props) {
+      props.type = 'POST';
+      props.url = props.url || '';
+      return this.request(props);
+    },
+    request: function (props) {
+      var xhr = new XMLHttpRequest();
+      type = props.type || 'GET', callback = function (fn, response, e) {
+        if (!_.isFunction(fn))
+          return;
+        if (!e) {
+          e = response;
+          response = e.target.response;
+        }
+        if (_.isString(response) && /\[|\{/.test(response.slice(0, 1)) || !isNaN(response)) {
+          try {
+            response = JSON.parse(response);
+          } catch (e) {
+          }
+        }
+        fn(response, e, xhr);
+      };
+      xhr.addEventListener('load', function (e) {
+        if (e.target.status !== 200)
+          callback(props.error, e);
+        callback(props.complete, e);
+      });
+      xhr.addEventListener('progress', function (e) {
+        callback(props.progress, e.lengthComputable ? e.loaded / e.total : undefined, e);
+      });
+      xhr.addEventListener('error', function (e) {
+        callback(props.error, e);
+      });
+      xhr.addEventListener('abort', function (e) {
+        callback(props.abort, e);
+      });
+      xhr.open(type, props.url);
+      if (type === 'GET' || !props.data) {
+        xhr.send();
+      } else {
+        if (props.header !== false) {
+          xhr.setRequestHeader('Content-Type', props.header || 'application/json;charset=UTF-8');
+        }
+        xhr.send(_.isString(props.data) ? props.data : JSON.stringify(props.data));
+      }
+      return xhr;
+    }
+  };
+  return XHR;
+}(framework_util);
+framework_module = function (Props, El, _, XHR) {
   var Module = {
     extend: function (module) {
       El.init();
@@ -892,6 +953,16 @@ framework_module = function (Props, El, _) {
       Object.defineProperty(module, '_fn', {
         enumerable: false,
         value: _.cloneDeep(module.fn)
+      });
+      // add XHR
+      Object.defineProperty(module, 'XHR', {
+        enumerable: false,
+        value: XHR
+      });
+      // add utility belt
+      Object.defineProperty(module, '_', {
+        enumerable: false,
+        value: _
       });
       // set Props reference
       module.Props = Props;
@@ -913,7 +984,7 @@ framework_module = function (Props, El, _) {
     }
   };
   return Module;
-}(framework_props, framework_el, framework_util);
+}(framework_props, framework_el, framework_util, framework_xhr);
 framework_view = function (Module, _) {
   var View = {
     extend: function (view) {
@@ -1184,67 +1255,6 @@ framework_router = function (Module, _) {
     };
   return Router;
 }(framework_module, framework_util);
-framework_xhr = function (_) {
-  var XHR = {
-    get: function (props) {
-      props.type = 'GET';
-      props.url = props.url || '';
-      if (props.data) {
-        props.data = _.isString(props.data) ? props.data : _.serialise(props.data);
-        props.url += (props.url.indexOf('?') >= 0 ? '&' : '?') + props.data;
-      }
-      return this.request(props);
-    },
-    post: function (props) {
-      props.type = 'POST';
-      props.url = props.url || '';
-      return this.request(props);
-    },
-    request: function (props) {
-      var xhr = new XMLHttpRequest();
-      type = props.type || 'GET', callback = function (fn, response, e) {
-        if (!_.isFunction(fn))
-          return;
-        if (!e) {
-          e = response;
-          response = e.target.response;
-        }
-        if (_.isString(response) && /\[|\{/.test(response.slice(0, 1)) || !isNaN(response)) {
-          try {
-            response = JSON.parse(response);
-          } catch (e) {
-          }
-        }
-        fn(response, e, xhr);
-      };
-      xhr.addEventListener('load', function (e) {
-        if (e.target.status !== 200)
-          callback(props.error, e);
-        callback(props.complete, e);
-      });
-      xhr.addEventListener('progress', function (e) {
-        callback(props.progress, e.lengthComputable ? e.loaded / e.total : undefined, e);
-      });
-      xhr.addEventListener('error', function (e) {
-        callback(props.error, e);
-      });
-      xhr.addEventListener('abort', function (e) {
-        callback(props.abort, e);
-      });
-      xhr.open(type, props.url);
-      if (type === 'GET' || !props.data) {
-        xhr.send();
-      } else {
-        if (props.header !== false) {
-          xhr.setRequestHeader('Content-Type', props.header || 'application/json;charset=UTF-8');
-        }
-        xhr.send(_.isString(props.data) ? props.data : JSON.stringify(props.data));
-      }
-      return xhr;
-    }
-  };
-  return XHR;
-}(framework_util);
 main = function (View, Module, Router, Props, Util, XHR) {
   var framework = {
     version: '0.1.2',
