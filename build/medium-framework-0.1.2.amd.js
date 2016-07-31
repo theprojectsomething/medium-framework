@@ -1287,8 +1287,8 @@ define('framework/view',[
           (bind || this.fn.render || _.noop).apply(this, arguments);
         }.bind( this ));
         this.on(router + ":before", function () {
-          this.unbind();
           (unbind || _.noop)();
+          this.unbind();
         }.bind( this ));
       },
 
