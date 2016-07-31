@@ -1013,10 +1013,22 @@ framework_view = function (Module, _) {
         if (!view.$el)
           return console.warn('View "' + view.name + '": element is incorrectly defined');
       },
-      autoBind: function (fn, route, router) {
+      autoBind: function (bind, route, unbind, router) {
+        // allow argument shifting
+        if (typeof bind === 'string') {
+          router = unbind;
+          unbind = route;
+          route = bind;
+        }
         router = router || ':router';
-        this.on(router + ':' + (route || this.name), fn || this.fn.render);
-        this.on(router + ':before', this.unbind);
+        this.on(router + ':' + (route || this.name), function () {
+          this.bind();
+          (bind || this.fn.render || _.noop)();
+        }.bind(this));
+        this.on(router + ':before', function () {
+          this.unbind();
+          (unbind || _.noop)();
+        }.bind(this));
       },
       bind: function () {
         if (this.bindings)
