@@ -1284,7 +1284,7 @@ define('framework/view',[
         router = router || ":router";
         this.on(router + ":" + (route || this.name), function () {
           this.bind();
-          (bind || this.fn.render || _.noop)();
+          (bind || this.fn.render || _.noop).apply(this, arguments);
         }.bind( this ));
         this.on(router + ":before", function () {
           this.unbind();
