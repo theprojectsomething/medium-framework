@@ -1033,6 +1033,8 @@ framework_view = function (Module, _) {
       bind: function () {
         if (this.bindings)
           this.unbind();
+        // trigger before bind
+        this.trigger('prebind');
         this.bindings = [];
         _.each(this.el.bind, function (bind, bindFrom) {
           var $el, binding;
@@ -1090,6 +1092,8 @@ framework_view = function (Module, _) {
         _.each(this.el.on, function (fn, event) {
           View.$el.fn(event, false, fn, this);
         }, this);
+        // trigger after bind
+        this.trigger('bind');
       },
       fn: function (event, delegate, fn, view) {
         if (_.isObject(fn) && fn.delegate && fn.fn) {
@@ -1112,6 +1116,8 @@ framework_view = function (Module, _) {
       unbind: function () {
         if (!this.bindings)
           return;
+        // trigger before unbind
+        this.trigger('preunbind');
         this.$el.off('.bind-' + (this.uid || this.name));
         _.each(this.bindings, function (binding) {
           if (binding.node)
@@ -1120,6 +1126,8 @@ framework_view = function (Module, _) {
             this.off(binding.prop, binding.fn);
         }, this);
         this.bindings = false;
+        // trigger after unbind
+        this.trigger('unbind');
       },
       event: function (event, view) {
         return event.replace(/( |$)/g, '.bind-' + (view.uid || view.name) + '$1');

@@ -1294,6 +1294,10 @@ define('framework/view',[
 
       bind: function () {
         if(this.bindings) this.unbind();
+
+        // trigger before bind
+        this.trigger('prebind');
+
         this.bindings = [];
         _.each(this.el.bind, function (bind, bindFrom) {
           var $el, binding;
@@ -1362,6 +1366,9 @@ define('framework/view',[
           View.$el.fn(event, false, fn, this);
         }, this);
 
+        // trigger after bind
+        this.trigger('bind');
+
       },
 
       fn: function (event, delegate, fn, view) {
@@ -1382,12 +1389,19 @@ define('framework/view',[
 
       unbind: function () {
         if( !this.bindings ) return;
+
+        // trigger before unbind
+        this.trigger('preunbind');
+
         this.$el.off('.bind-' + (this.uid || this.name));
         _.each(this.bindings, function (binding) {
           if( binding.node ) this.unset( binding.prop );
           else this.off(binding.prop, binding.fn);
         }, this);
         this.bindings = false;
+
+        // trigger after unbind
+        this.trigger('unbind');
       },
 
       event: function (event, view) {
