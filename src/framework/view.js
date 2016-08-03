@@ -37,24 +37,13 @@ define([
         if( !view.$el ) return console.warn( 'View "' + view.name + '": element is incorrectly defined' );
       },
 
-      autoBind: function (bind, route, unbind, router) {
-
-        // allow argument shifting
-        if(typeof bind === "string") {
-          router = unbind;
-          unbind = route;
-          route = bind;
-        }
-
+      autoBind: function (route, router) {
         router = router || ":router";
         this.on(router + ":" + (route || this.name), function () {
-          (bind || this.fn.render || _.noop).apply(this, arguments);
+          (this.fn.render || _.noop).apply(this, arguments);
           this.bind();
         }.bind( this ));
-        this.on(router + ":before", function () {
-          (unbind || _.noop)();
-          this.unbind();
-        }.bind( this ));
+        this.on(router + ":before", this.unbind);
       },
 
       bind: function () {
