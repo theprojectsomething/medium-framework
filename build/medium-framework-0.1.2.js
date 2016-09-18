@@ -643,7 +643,7 @@ framework_el_events = function (_) {
           types.split(' ').forEach(function (typespace) {
             var type = Events.fn.type.e(typespace), namespace = Events.fn.type.ns(typespace), callback = function (e) {
                 // set el to 'this' if no delegate, or delegate if there is a match
-                var $el = !fn ? this : $(e.target).is(delegate) ? e.target : false, detail = e.detail || e.data, data = Events.data[detail];
+                var $el = !fn ? this : e.target.closest(delegate) ? e.target : false, detail = e.detail || e.data, data = Events.data[detail];
                 // return if no match
                 if (!$el)
                   return;
