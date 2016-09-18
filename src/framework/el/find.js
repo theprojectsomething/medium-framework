@@ -13,6 +13,9 @@ define([
     fn: {
       init: function () {
         Node.prototype.find = window.find = NodeList.prototype.find = Find.fn.find;
+        Node.prototype.parents = NodeList.prototype.parents = Find.fn.parents;
+        Node.prototype.path = NodeList.prototype.path = Find.fn.path;
+        Node.prototype.closest = NodeList.prototype.closest = Find.fn.closest;
       },
 
       find: function (selector) {
@@ -33,6 +36,47 @@ define([
           var $el = this === window ? document : this;
           return $el.querySelectorAll( selector );
         }
+      },
+
+      parents: function (selector) {
+        if(_.isNodeList( this )) {
+          return this.length > 1 ? _.uniq(this.reduce(function (list, $el) {
+            return list.concat($el.parents.call(this, selector));
+          }, [])): $el.parents.call(this[0], selector);
+        }
+
+        var path = this.path().slice(1);
+        
+        return selector ? path.filter(function ($el) {
+          return $el.is(selector);
+        }) : path;
+        
+      },
+
+      path: function (reset) {
+        if(!this.$path || reset) {
+          var $el = this;
+          this.$path = [];
+          for (; $el && $el !== document; $el = $el.parentNode) {
+            this.$path.push($el);
+          }
+        }
+        
+        return this.$path.slice();
+      },
+
+      closest: function (selector) {
+        if(!selector) return [];
+
+        if(_.isNodeList( this )) {
+          return this.length > 1 ? _.uniq(this.reduce(function (list, $el) {
+            return list.concat($el.closest.call(this, selector));
+          }, [])) : $el.closest.call(this[0], selector);
+        }
+
+        return this.path().find(function ($el) {
+          return $el.is(selector);
+        });
       }
     },
 

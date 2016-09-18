@@ -32,6 +32,12 @@ define([], function () {
       return fn.clone(a, b, true, transform);
     },
 
+    cookie: function (name) {
+      // http://stackoverflow.com/a/25490531/720204
+      var value = document.cookie.match('(^|;)\\s*' + name + '\\s*=\\s*([^;]+)');
+      return value ? value.pop() : '';
+    },
+
     defaults: function (a, b, deep) {
       return fn.clone(b, a, !!deep, null, true);
     },
@@ -218,7 +224,6 @@ define([], function () {
       return [].slice.call( args );
     },
 
-    
     serialise: function (data, prefix) {
       // http://stackoverflow.com/a/1714899/720204
       var str = [];
@@ -233,10 +238,11 @@ define([], function () {
       return str.join( "&" );
     },
 
-    cookie: function (name) {
-      // http://stackoverflow.com/a/25490531/720204
-      var value = document.cookie.match('(^|;)\\s*' + name + '\\s*=\\s*([^;]+)');
-      return value ? value.pop() : '';
+    uniq: function (list) {
+      // http://stackoverflow.com/a/9229821/720204
+      return list.filter(function(value, i, self) {
+          return self.indexOf(value) === i;
+      });
     }
   };
 
