@@ -765,7 +765,7 @@ framework_el_find = function (_) {
         if (_.isNodeList(this)) {
           return this.length > 1 ? _.uniq(this.reduce(function (list, $el) {
             return list.concat($el.parents.call(this, selector));
-          }, [])) : $el.parents.call(this[0], selector);
+          }, [])) : this.parents.call(this[0], selector);
         }
         var path = this.path().slice(1);
         return selector ? path.filter(function ($el) {
@@ -773,6 +773,11 @@ framework_el_find = function (_) {
         }) : path;
       },
       path: function (reset) {
+        if (_.isNodeList(this)) {
+          return this.map(function ($el) {
+            return $el.path(reset);
+          });
+        }
         if (!this.$path || reset) {
           var $el = this;
           this.$path = [];
@@ -788,7 +793,7 @@ framework_el_find = function (_) {
         if (_.isNodeList(this)) {
           return this.length > 1 ? _.uniq(this.reduce(function (list, $el) {
             return list.concat($el.closest.call(this, selector));
-          }, [])) : $el.closest.call(this[0], selector);
+          }, [])) : this.closest.call(this[0], selector);
         }
         return this.path().find(function ($el) {
           return $el.is(selector);
