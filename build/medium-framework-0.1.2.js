@@ -643,7 +643,7 @@ framework_el_events = function (_) {
           types.split(' ').forEach(function (typespace) {
             var type = Events.fn.type.e(typespace), namespace = Events.fn.type.ns(typespace), callback = function (e) {
                 // set el to 'this' if no delegate, or delegate if there is a match
-                var $el = !fn ? this : e.target.closest(delegate) ? e.target : false, detail = e.detail || e.data, data = Events.data[detail];
+                var $el = !fn ? this : (e.delegateTarget = e.target.closest(delegate)) ? e.target : false, detail = e.detail || e.data, data = Events.data[detail];
                 // return if no match
                 if (!$el)
                   return;
@@ -1233,11 +1233,10 @@ framework_router = function (Module, _) {
           }, true);
         },
         anchor: function (e) {
-          var $anchor = e.target;
           // links out of app
-          if (e.target.href.indexOf(this.props.base) !== 0)
+          if (e.delegateTarget.href.indexOf(this.props.base) !== 0)
             return;
-          var $anchor = e.target,
+          var $anchor = e.delegateTarget,
             // href as defined in code (remove first slash)
             href = $anchor.getAttribute('href').replace(/^\//, '');
           // link protocol is http?

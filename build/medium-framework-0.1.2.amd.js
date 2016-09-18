@@ -756,7 +756,7 @@ define('framework/el/events',[
                 callback = function (e) {
 
                   // set el to 'this' if no delegate, or delegate if there is a match
-                  var $el = !fn ? this : e.target.closest( delegate ) ? e.target : false,
+                  var $el = !fn ? this : (e.delegateTarget = e.target.closest( delegate )) ? e.target : false,
                       detail = e.detail || e.data,
                       data = Events.data[ detail ];
 
@@ -1544,12 +1544,10 @@ define('framework/router',[
       anchor: function (e) {
 
 
-        var $anchor = e.target;
-
         // links out of app
-        if(e.target.href.indexOf( this.props.base )!==0) return;
+        if(e.delegateTarget.href.indexOf( this.props.base )!==0) return;
 
-        var $anchor = e.target,
+        var $anchor = e.delegateTarget,
 
         // href as defined in code (remove first slash)
         href = $anchor.getAttribute( 'href' ).replace(/^\//, "");

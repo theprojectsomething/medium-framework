@@ -65,7 +65,7 @@ define([
                 callback = function (e) {
 
                   // set el to 'this' if no delegate, or delegate if there is a match
-                  var $el = !fn ? this : e.target.closest( delegate ) ? e.target : false,
+                  var $el = !fn ? this : (e.delegateTarget = e.target.closest( delegate )) ? e.target : false,
                       detail = e.detail || e.data,
                       data = Events.data[ detail ];
 
