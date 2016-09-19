@@ -80,7 +80,7 @@ define([
           }, [])) : this.closest.call(this[0], selector);
         }
 
-        return this.path().find(function ($el) {
+        return _.find(this.path(), function ($el) {
           return $el.is(selector);
         });
       }
