@@ -835,7 +835,7 @@ framework_el_content = function (_) {
       is: function (selector) {
         var $list = _.isNodeList(this) ? this : [this];
         return $list.reduce(function (is, $el) {
-          return is || (_.isString(selector) ? _.isIE ? $el.msMatchesSelector(selector) : $el.matches(selector) : _.isNodeList(selector) ? selector.is($el) : selector === $el);
+          return is || (_.isString(selector) ? _.isIE || $el.msMatchesSelector ? $el.msMatchesSelector(selector) : $el.matches(selector) : _.isNodeList(selector) ? selector.is($el) : selector === $el);
         }, false);
       },
       clone: function () {
