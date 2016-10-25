@@ -10,3 +10,7 @@
 - Tiny: 7.2kb minified + gzipped
 
 check out the [site](https://theprojectsomething.github.io/medium-framework/) or the [docs](https://theprojectsomething.github.io/medium-framework/docs/)
+
+**To Do:**
+- optional caching on props (local/session storage)
+- overwritable render function, including template and props
