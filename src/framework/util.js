@@ -211,7 +211,7 @@ define([], function () {
           try {
             var storage = window[type + 'Storage'];
             storage.setItem(uid, uid);
-            var result = storage.getItem(uid) === uid;
+            var result = storage.getItem(uid) == uid;
             storage.removeItem(uid);
             return result && storage;
           } catch (exception) {}
@@ -279,6 +279,15 @@ define([], function () {
       return list.filter(function(value, i, self) {
           return self.indexOf(value) === i;
       });
+    },
+
+    // convert an xpath to a CSS3 selector e.g. "xpath://body/a[3]" => "body:nth-of-type(1) a:nth-of-type(3)"
+    xpathToSelector: function (xpath) {
+      return xpath.replace(/^xpath:\/\//, '').split('/').reduce(function (selector, value) {
+         return selector.concat(value.replace(/\[(\d+)\]|$/, function ($0, $1) {
+            return ':nth-of-type(' + ($1 || 1) + ')';
+         }));
+      }, []).join(" ");
     }
   };
 

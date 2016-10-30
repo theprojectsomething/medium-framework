@@ -15,6 +15,7 @@ define([
         Node.prototype.find = window.find = NodeList.prototype.find = Find.fn.find;
         Node.prototype.parents = NodeList.prototype.parents = Find.fn.parents;
         Node.prototype.path = NodeList.prototype.path = Find.fn.path;
+        Node.prototype.toJSON = Node.prototype.xpath = NodeList.prototype.xpath = Find.fn.xpath;
         Node.prototype.closest = NodeList.prototype.closest = Find.fn.closest;
       },
 
@@ -61,14 +62,36 @@ define([
         }
 
         if(!this.$path || reset) {
-          var $el = this;
+          var $el = this,
+              i, $prev;
+
           this.$path = [];
+          this.$xpath = [];
+
           for (; $el && $el !== document; $el = $el.parentNode) {
+            i = 1;
+            $prev = $el.previousElementSibling;
+            while($prev) {
+              if($prev.tagName === $el.tagName) ++i;
+              $prev = $prev.previousElementSibling;
+            }
+            this.$xpath.unshift($el.tagName + (i > 1 ? '[' + i + ']' : ''));
             this.$path.push($el);
           }
         }
         
         return this.$path.slice();
+      },
+
+      xpath: function (reset) {
+        if(_.isNodeList( this )) {
+          return this.map(function ($el) {
+            return $el.xpath(reset);
+          });
+        }
+
+        this.path(reset);
+        return 'xpath://' + this.$xpath.slice(1).join("/").toLowerCase();
       },
 
       closest: function (selector) {
