@@ -184,6 +184,49 @@ framework_util = function () {
       randomString: function (length) {
         return Array(length + 1).join((Math.random().toString(36) + '00000000000000000').slice(2, 18)).slice(0, length);
       },
+      serialise: function (data, prefix) {
+        // http://stackoverflow.com/a/1714899/720204
+        var str = [];
+        for (var i in data) {
+          if (data.hasOwnProperty(i)) {
+            var key = prefix ? prefix + '[' + i + ']' : i, value = data[i];
+            str.push(typeof value == 'object' ? this.serialise(value, key) : encodeURIComponent(key) + '=' + encodeURIComponent(value));
+          }
+        }
+        return str.join('&');
+      },
+      storage: function (window) {
+        var uid = new Date(), Storage = function (type, uid) {
+            this.data = function (type, uid) {
+              try {
+                var storage = window[type + 'Storage'];
+                storage.setItem(uid, uid);
+                var result = storage.getItem(uid) === uid;
+                storage.removeItem(uid);
+                return result && storage;
+              } catch (exception) {
+              }
+            }(type, uid);
+            this.setItem = function (key, value) {
+              if (this.data)
+                this.data.setItem(key, JSON.stringify(value));
+            };
+            this.getItem = function (key, isJSON) {
+              if (!this.data)
+                return;
+              var data = this.data.getItem(key);
+              return isJSON !== false ? JSON.parse(data) : data;
+            };
+            this.removeItem = function (key) {
+              if (this.data)
+                this.data.removeItem(key);
+            };
+          };
+        return {
+          local: new Storage('local', uid),
+          session: new Storage('session', uid)
+        };
+      }(window),
       template: function (str) {
         // Adapted from http://goo.gl/7KvWuU with single-quote fix from http://goo.gl/fOuW28
         // John Resig - http://ejohn.org/ - MIT Licensed
@@ -201,17 +244,6 @@ framework_util = function () {
       },
       toArray: function (args) {
         return [].slice.call(args);
-      },
-      serialise: function (data, prefix) {
-        // http://stackoverflow.com/a/1714899/720204
-        var str = [];
-        for (var i in data) {
-          if (data.hasOwnProperty(i)) {
-            var key = prefix ? prefix + '[' + i + ']' : i, value = data[i];
-            str.push(typeof value == 'object' ? this.serialise(value, key) : encodeURIComponent(key) + '=' + encodeURIComponent(value));
-          }
-        }
-        return str.join('&');
       },
       uniq: function (list) {
         // http://stackoverflow.com/a/9229821/720204
