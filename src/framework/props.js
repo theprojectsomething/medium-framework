@@ -115,6 +115,9 @@ define([
                   // set the new value
                   data[ prop ] = val;
 
+                  // save the change
+                  fn.history(prop, val);
+
                   // trigger an event
                   fn.trigger( prop );
                 }
@@ -140,6 +143,9 @@ define([
             }
 
             data[ prop ] = current;
+            
+            // save the change
+            fn.history(prop, current);
 
             // if property changed or trigger is forced
             if(trigger===true || changed && trigger!==false) {
@@ -153,13 +159,18 @@ define([
 
         // trigger an event on a prop, an array of props, or a module
         trigger: function (list) {
+
+
           if(_.isString( list )) list = [ list ];
 
           // set a value for module triggers
           var val = _.toArray( arguments ).slice( 1 );
 
+
           // iterate through props
           _.each(list, function (proptree) {
+            
+            fn.history(proptree, val, true);
 
             _.each(proptree.split( ":" ), function (subprop, i, tree) {
 
@@ -197,6 +208,10 @@ define([
 
             delete Props.data[ ns ][ prop ];
           });
+        },
+
+        history: function (prop, value, isTrigger) {
+          Props.history.append(isTrigger ? [namespace, prop, value] : [namespace + ":" + prop, value]);
         },
 
         // the props, can be attached for quick access
@@ -269,6 +284,60 @@ define([
       // select the event by namespace and prop
       return 'app-props:' + _.toArray( arguments ).join( ":" ).replace(/app-props:/g, "");
     },
+
+    history: {
+      
+      // log of prop changes, stored in session data
+      log: {
+        pre: _.storage.session && _.storage.session.getItem('app-props:history') || [],
+        current: [],
+      },
+
+      reload: function () {
+        if(!Props.history.log.pre.length) return;
+        Props.history.reloading = true;
+        console.log('History:', Props.history.log.pre.length)
+
+        var pre = Props.history.log.pre.slice(),
+        onIterate = function () {
+          var json = pre.shift(),
+          args = JSON.parse(json, function (key, value) {
+            return /^xpath:\/\//.test(value) ? document.querySelector( _.xpathToSelector(value) ) : value;
+          });
+          
+          if(args.length>2) {
+            console.log('trigger:', args)
+
+            var ns = Props.init( args[0] );
+            ns.trigger.apply(Props, [ args[1] ].concat(args[2]));
+          }else {
+              console.log('props:', args)
+
+            Props.get.apply(Props, args);
+          }
+
+          if(pre.length) return setTimeout(onIterate, 0);
+          
+          Props.history.log.current = Props.history.log.pre.slice();
+          Props.history.reloading = false;
+          Props.history.save();
+        };
+
+        onIterate();
+      },
+
+      append: function (data) {
+        if(Props.history.reloading) return;
+        Props.history.log.current.push(JSON.stringify(data));
+        Props.history.save();
+      },
+
+      save: function () {
+        if(_.storage.session) {
+          _.storage.session.setItem(Props.event('history'), Props.history.log.current);
+        }
+      }
+    }
 
   };
 
