@@ -57,9 +57,18 @@ define([
         callback(props.abort, e);
       });
       xhr.open(type, props.url);
+
+      if( props.headers!==false ){
+        _.each(props.headers, function (value, header) {
+          xhr.setRequestHeader(header, value);
+        });
+      }
+
       if(type === "GET" || !props.data) {
         xhr.send();
       } else {
+
+        /* DEPRECATED FEATURE - THIS SHOULD BE SET TO `props.contentType` OR REMOVED */
         if( props.header!==false ){
           xhr.setRequestHeader("Content-Type", props.header || "application/json;charset=UTF-8");
         }
