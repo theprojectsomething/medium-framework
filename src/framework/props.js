@@ -19,7 +19,7 @@ define([
     data: {},
 
     // return default props for a namespace
-    init: function (namespace, defaults) {
+    init: function (namespace, defaults, history) {
 
       // if no props defined, set an empty object 
       if(!this.props.hasOwnProperty( namespace )) {
@@ -211,6 +211,7 @@ define([
         },
 
         history: function (prop, value, isTrigger) {
+          if(!history) return;
           Props.history.append(isTrigger ? [namespace, prop, value] : [namespace + ":" + prop, value]);
         },
 

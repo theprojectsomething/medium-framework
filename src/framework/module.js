@@ -18,7 +18,7 @@ define([
       
       // if name is defined, auto-setup props
       if( module.name ) {
-        var props = Props.init(module.name, module.props);
+        var props = Props.init(module.name, module.props, module.history);
         _.extend(module, props);
 
         // make any props functions non-enumerable
