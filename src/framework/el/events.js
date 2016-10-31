@@ -123,7 +123,7 @@ define([
                   // check element
                   if( e.$el!==this ) return;
                   return (!type || e.type === type) &&
-                         (!namespace || e.ns === namespace) &&
+                         (!namespace || e.ns.slice(-namespace.length) === namespace) &&
                          (!fn || e.fn === fn);
 
                 }.bind( this ));
