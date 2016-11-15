@@ -75,11 +75,20 @@ define([], function () {
     },
 
     get: function (o, path, defaultValue) {
-      var pathtree = o.hasOwnProperty( path ) ? [ path ] : Util.isArray( path ) ? path : path.split( /[\[\].:]+/ );
+      var pathtree = o.hasOwnProperty( path ) ? [ path ] : Util.isArray( path ) ? path : path.split( /[\[\].:]+/ ),
+          multi,
+          fn = function (o, path, i, pathtree) {
+            if(path==="*" && Util.isObject( o )) {
+              return Object.keys( o ).reduce(function (a, key) {
+                multi = true;
+                var value = Util.get(o[ key ], pathtree.slice(i + 1));
+                return Util.isUndefined( value ) ? a : a.concat(value);
+              }, []);
+            }
+            return o===defaultValue || Util.isUndefined( o[ path ] ) ? (multi && o.length ? o : defaultValue) : o[ path ];
+          };
 
-      return pathtree.reduce(function (o, path) {
-        return o===defaultValue || Util.isUndefined( o[ path ] ) ? defaultValue : o[ path ];
-      }, o);
+      return pathtree.reduce(fn, o);
     },
 
     getProp: function (o, path) {
