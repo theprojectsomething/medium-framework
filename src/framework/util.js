@@ -112,7 +112,7 @@ define([], function () {
     },
 
     isEqual: function (a, b, args) {
-      if(!Util.isObject( a ) && typeof a !== typeof b) return false;
+      if(!Util.isObject( a ) && !Util.isFunction(b) && typeof a !== typeof b) return false;
       if(Util.isBoolean( b )) return !!a === b;
       if(Util.isFunction( b )) return b(a, isNaN( args ) ? args : +args);
       if(Util.isObject( b )) {
