@@ -47,7 +47,7 @@ define([
       },
 
       bind: function () {
-        if(this.bindings) this.unbind();
+        if(this.bindings) this.unbind(false);
 
         // trigger before bind
         this.trigger('prebind');
@@ -141,11 +141,11 @@ define([
         }
       },
 
-      unbind: function () {
+      unbind: function (trigger) {
         if( !this.bindings ) return;
 
         // trigger before unbind
-        this.trigger('preunbind');
+        if(trigger!==false) this.trigger('preunbind');
 
         this.$el.off('.bind-' + (this.uid || this.name));
         _.each(this.bindings, function (binding) {
@@ -155,7 +155,7 @@ define([
         this.bindings = false;
 
         // trigger after unbind
-        this.trigger('unbind');
+        if(trigger!==false) this.trigger('unbind');
       },
 
       event: function (event, view) {
