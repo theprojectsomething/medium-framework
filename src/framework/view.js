@@ -46,7 +46,12 @@ define([
         this.on(router + ":before", this.unbind);
       },
 
-      bind: function () {
+      bind: function (rebind) {
+
+        // reset $el if empty, or rebind requested
+        if(rebind===true || !this.$el || !this.$el.length) View.$el.set(this);
+
+        // unbind quietly if already bound 
         if(this.bindings) this.unbind(false);
 
         // trigger before bind
